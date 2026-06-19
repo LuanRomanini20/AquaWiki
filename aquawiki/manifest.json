@@ -1,0 +1,19 @@
+{
+  "name": "AquaWiki — Enciclopédia de Aquarismo",
+  "short_name": "AquaWiki",
+  "description": "Catálogo de peixes, simulador de compatibilidade, filtragem, guias e dicas práticas para aquarismo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#061822",
+  "theme_color": "#061822",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/logo-dark.png",
+      "sizes": "172x64",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "reference"]
+}

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AquaWiki — Guia de aquarismo</title>
+  <meta name="description" content="AquaWiki: peixes ornamentais, filtragem, ciclagem, parâmetros e dicas práticas para aquários mais saudáveis." />
+  <meta name="theme-color" content="#061822" />
+  <meta name="color-scheme" content="dark light" />
+  <meta property="og:title" content="AquaWiki — Enciclopédia de Aquarismo" />
+  <meta property="og:description" content="Catálogo de peixes, simulador de compatibilidade, filtragem, guias e dicas práticas para aquarismo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Aquarium_plants_and_fish.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AquaWiki — Enciclopédia de Aquarismo" />
+  <meta name="twitter:description" content="Catálogo de peixes, simulador de compatibilidade, filtragem, guias e dicas práticas para aquarismo." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AquaWiki","description":"Enciclopédia de aquarismo com catálogo de peixes, simulador de compatibilidade e guias práticos.","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://aquawiki.com.br"}</script>
+  <link rel="preconnect" href="https://en.wikipedia.org" />
+  <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+  <link rel="dns-prefetch" href="https://commons.wikimedia.org" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="site-bg" aria-hidden="true"></div>
+  <header class="topbar" id="topo">
+    <a class="brand" href="#topo" aria-label="Voltar ao topo">
+      <span class="brand-logo" aria-hidden="true">
+        <img class="logo logo-dark" src="assets/logo-dark.png" alt="" width="172" height="64" />
+        <img class="logo logo-light" src="assets/logo-light.png" alt="" width="172" height="64" />
+      </span>
+      <span class="brand-copy"><small>enciclopédia de aquarismo</small></span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#peixes"><i class="bx bx-fish"></i> Peixes</a>
+      <a href="#tanque"><i class="bx bx-dock-left"></i> Tanque</a>
+      <a href="#filtragem"><i class="bx bx-filter"></i> Filtragem</a>
+      <a href="#guias"><i class="bx bx-book-open"></i> Guias</a>
+      <a href="#calculadoras"><i class="bx bx-calculator"></i> Calculadoras</a>
+      <a href="#fontes"><i class="bx bx-link-external"></i> Fontes</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar entre tema claro e escuro" aria-pressed="false"><i class="bx bx-moon" id="themeIcon"></i></button>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero section-pad" aria-labelledby="hero-title">
+      <div class="hero-content reveal">
+        <p class="eyebrow">Aquarismo de água doce, marinho, salobra e lagos</p>
+        <h1 id="hero-title">Peixes saudáveis, água estável e aquários cheios de vida.</h1>
+        <p class="hero-text">Conheça espécies ornamentais, escolha filtragem com segurança, compare compatibilidade e monte um ambiente estável antes de receber a fauna.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#peixes"><i class="bx bx-fish"></i> Explorar peixes</a>
+          <a class="btn ghost" href="#calculadoras"><i class="bx bx-calculator"></i> Calcular meu aquário</a>
+        </div>
+      </div>
+      <aside class="hero-card reveal" aria-label="Resumo do AquaWiki">
+        <figure class="hero-photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aquarium_plants_and_fish.jpg" alt="Aquário plantado com peixes ornamentais" loading="eager" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" />
+          <figcaption>Aquário plantado real via Wikimedia Commons</figcaption>
+        </figure>
+        <div class="stat-grid">
+          <div><i class="bx bx-fish stat-icon"></i><strong id="fishCount">0</strong><span>perfis</span></div>
+          <div><i class="bx bx-filter stat-icon"></i><strong id="filterCount">0</strong><span>filtragens</span></div>
+          <div><i class="bx bx-check-circle stat-icon"></i><strong>100%</strong><span>estático</span></div>
+          <div><i class="bx bx-server stat-icon"></i><strong>0</strong><span>backend</span></div>
+        </div>
+        <p class="tiny-note">Observação: “todos os tipos” aqui significa um catálogo amplo e organizado para aquarismo. Para taxonomia completa, consulte FishBase.</p>
+      </aside>
+    </section>
+
+    <section class="quick section-pad reveal" aria-labelledby="principios-title">
+      <div class="section-head compact">
+        <p class="eyebrow">Princípios que evitam 80% dos erros</p>
+        <h2 id="principios-title">Antes de comprar peixe, valide o ambiente.</h2>
+      </div>
+      <div class="principles">
+        <article><span class="principle-icon"><i class="bx bx-droplet"></i></span><h3>Cicle o aquário</h3><p>Amônia e nitrito devem estar zerados antes da fauna entrar. A filtragem biológica é o coração do sistema.</p></article>
+        <article><span class="principle-icon"><i class="bx bx-slider"></i></span><h3>Compare parâmetros</h3><p>Temperatura, pH, dureza, salinidade, tamanho adulto e comportamento precisam combinar.</p></article>
+        <article><span class="principle-icon"><i class="bx bx-expand-alt"></i></span><h3>Pense no adulto</h3><p>O erro clássico é comprar peixe pequeno que vira peixe grande, territorial ou predador.</p></article>
+        <article><span class="principle-icon"><i class="bx bx-wrench"></i></span><h3>Manutenção vence milagre</h3><p>TPAs, testes, quarentena e alimentação moderada são mais importantes que produtos "instantâneos".</p></article>
+      </div>
+    </section>
+
+    <section class="section-pad" id="peixes" aria-labelledby="peixes-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">Catálogo pesquisável</p>
+        <h2 id="peixes-title">Tipos e grupos de peixes para aquarismo</h2>
+        <p>Filtre por ambiente, dificuldade, comportamento ou pesquise por nome. Clique em um card para ver detalhes rápidos, foto, fonte visual e cuidados.</p>
+      </div>
+
+      <div class="toolbar reveal" role="search">
+        <label class="search-box">
+          <span><i class="bx bx-search"></i> Buscar</span>
+          <input id="searchInput" type="search" placeholder="Ex.: betta, ciclídeo, marinho, fundo..." autocomplete="off" aria-describedby="resultCount" />
+        </label>
+        <label>
+          <span><i class="bx bx-globe"></i> Ambiente</span>
+          <select id="waterFilter"><option value="all">Todos</option></select>
+        </label>
+        <label>
+          <span><i class="bx bx-bar-chart-alt-2"></i> Dificuldade</span>
+          <select id="difficultyFilter"><option value="all">Todas</option></select>
+        </label>
+        <label>
+          <span><i class="bx bx-heart"></i> Temperamento</span>
+          <select id="temperFilter"><option value="all">Todos</option></select>
+        </label>
+      </div>
+
+      <div class="result-row reveal">
+        <p aria-live="polite"><strong id="resultCount">0</strong> resultados encontrados.</p>
+        <button id="resetFilters" class="btn mini" type="button"><i class="bx bx-reset"></i> Limpar filtros</button>
+      </div>
+
+      <div class="fish-grid" id="fishGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="section-pad panel-section reveal" id="compatibilidade" aria-labelledby="compatibilidade-title">
+      <div class="section-head compact">
+        <p class="eyebrow">Compatibilidade rápida</p>
+        <h2 id="compatibilidade-title">Compare dois grupos antes de misturar.</h2>
+        <p>Este verificador usa regras simples: ambiente, faixa de temperatura, comportamento e tamanho. Ele não substitui pesquisa por espécie.</p>
+      </div>
+      <div class="compare-box">
+        <label><span>Peixe 1</span><select id="compareA"></select></label>
+        <label><span>Peixe 2</span><select id="compareB"></select></label>
+        <button class="btn primary" id="compareBtn" type="button"><i class="bx bx-git-compare"></i> Comparar</button>
+      </div>
+      <div id="compareResult" class="compare-result"></div>
+    </section>
+
+    <section class="section-pad reveal" id="tanque" aria-labelledby="tanque-title">
+      <div class="section-head compact">
+        <p class="eyebrow">Simulador visual</p>
+        <h2 id="tanque-title">Monte seu tanque virtual.</h2>
+        <p>Adicione espécies ao tanque e veja em tempo real se combinam. O score atualiza a cada peixe adicionado e mostra conflitos específicos.</p>
+      </div>
+      <div class="tank-layout">
+        <div class="tank-species-panel">
+          <div class="tank-search">
+            <i class="bx bx-search"></i>
+            <input id="tankSearch" type="search" placeholder="Buscar espécie..." autocomplete="off" />
+          </div>
+          <div class="tank-species-list" id="tankSpeciesList"></div>
+        </div>
+        <div class="tank-virtual-panel">
+          <div class="tank-visual" id="tankVisual">
+            <div class="tank-water"></div>
+            <div class="tank-empty" id="tankEmpty">
+              <i class="bx bx-plus-circle"></i>
+              <p>Clique em um peixe ao lado para adicionar ao tanque</p>
+            </div>
+            <div class="tank-fishes" id="tankFishes"></div>
+          </div>
+          <div class="tank-score-bar">
+            <div class="tank-score-info">
+              <span class="tank-score-label">Score de compatibilidade</span>
+              <span class="tank-score-value" id="tankScoreValue">—</span>
+            </div>
+            <div class="tank-score-track"><i class="tank-score-fill" id="tankScoreFill"></i></div>
+          </div>
+          <div class="tank-summary" id="tankSummary"></div>
+          <div class="tank-conflicts" id="tankConflicts"></div>
+          <div class="tank-actions">
+            <button class="btn mini" id="tankClear" type="button"><i class="bx bx-trash"></i> Limpar tanque</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="filtragem" aria-labelledby="filtragem-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">Filtragem e mídias</p>
+        <h2 id="filtragem-title">Tipos de filtragem e quando usar</h2>
+        <p>A filtragem ideal combina etapas mecânica, biológica e, quando necessário, química/auxiliar.</p>
+      </div>
+      <div class="filters-grid" id="filtersGrid"></div>
+    </section>
+
+    <section class="section-pad split" id="calculadoras" aria-labelledby="calculadoras-title">
+      <div class="calculator-card reveal">
+        <p class="eyebrow">Calculadora</p>
+        <h2 id="calculadoras-title">Volume e vazão sugerida</h2>
+        <p>Informe medidas internas do vidro em centímetros. A vazão é uma referência inicial e deve ser ajustada por espécie, carga orgânica e layout.</p>
+        <div class="calc-grid">
+          <label><span><i class="bx bx-horizontal-center"></i> Comprimento</span><input id="len" type="number" min="1" step="0.1" value="60" inputmode="decimal" /></label>
+          <label><span><i class="bx bx-vertical-center"></i> Largura</span><input id="wid" type="number" min="1" step="0.1" value="30" inputmode="decimal" /></label>
+          <label><span><i class="bx bx-up-arrow"></i> Altura útil</span><input id="hei" type="number" min="1" step="0.1" value="35" inputmode="decimal" /></label>
+          <label><span><i class="bx bx-bar-chart"></i> Perfil</span><select id="flowProfile"><option value="5">Baixa carga / betta / camarões</option><option value="7" selected>Comunitário tropical</option><option value="10">Alta carga / kinguios / ciclídeos</option></select></label>
+        </div>
+        <button class="btn primary" id="calcBtn" type="button"><i class="bx bx-calculator"></i> Calcular</button>
+        <div id="calcResult" class="calc-result"></div>
+      </div>
+      <div class="calculator-card reveal">
+        <p class="eyebrow">Checklist</p>
+        <h2>Pronto para receber peixes?</h2>
+        <div class="checklist" id="checklist"></div>
+        <div class="progress-wrap"><span id="progressLabel">0%</span><div class="progress" role="progressbar" aria-label="Progresso do checklist" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progressBar"></i></div></div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="guias" aria-labelledby="guias-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">Guias práticos</p>
+        <h2 id="guias-title">Dicas essenciais de aquarismo</h2>
+      </div>
+      <div class="guide-tabs reveal" role="tablist" aria-label="Guias de aquarismo">
+        <button class="tab active" data-guide="iniciante" type="button" role="tab" aria-selected="true" aria-controls="guidePanel"><i class="bx bx-seedling"></i> Iniciante</button>
+        <button class="tab" data-guide="plantado" type="button" role="tab" aria-selected="false" aria-controls="guidePanel"><i class="bx bx-leaf"></i> Plantado</button>
+        <button class="tab" data-guide="marinho" type="button" role="tab" aria-selected="false" aria-controls="guidePanel"><i class="bx bx-water"></i> Marinho</button>
+        <button class="tab" data-guide="doencas" type="button" role="tab" aria-selected="false" aria-controls="guidePanel"><i class="bx bx-error"></i> Doenças</button>
+        <button class="tab" data-guide="manutencao" type="button" role="tab" aria-selected="false" aria-controls="guidePanel"><i class="bx bx-cog"></i> Manutenção</button>
+      </div>
+      <div class="guide-panel reveal" id="guidePanel" role="tabpanel" tabindex="0"></div>
+    </section>
+
+    <section class="section-pad glossary-section reveal" aria-labelledby="glossario-title">
+      <div class="section-head compact">
+        <p class="eyebrow">Glossário</p>
+        <h2 id="glossario-title">Termos que todo aquarista encontra</h2>
+      </div>
+      <div class="glossary" id="glossary"></div>
+    </section>
+
+    <section class="section-pad sources reveal" id="fontes" aria-labelledby="fontes-title">
+      <div class="section-head compact">
+        <p class="eyebrow">Transparência</p>
+        <h2 id="fontes-title">Fontes usadas para estruturar o conteúdo</h2>
+        <p>O AquaWiki não substitui veterinário, biólogo, loja especializada séria ou pesquisa por espécie. Use as fichas como ponto de partida.</p>
+      </div>
+      <ul>
+        <li><a href="https://www.fishbase.se/home.php" target="_blank" rel="noopener noreferrer">FishBase — base global de informações sobre peixes</a></li>
+        <li><a href="https://seriouslyfish.com/species" target="_blank" rel="noopener noreferrer">Seriously Fish — perfis de espécies e manutenção em cativeiro</a></li>
+        <li><a href="https://www.aqueon.com/articles/aquarium-filtration-basics" target="_blank" rel="noopener noreferrer">Aqueon — conceitos básicos de filtragem</a></li>
+        <li><a href="https://aquaforest.eu/en/knowledge-base/aquarium-filter-media-filtration-methods-biological-chemical-mechanical/" target="_blank" rel="noopener noreferrer">Aquaforest — mídias biológicas, químicas e mecânicas</a></li>
+        <li><a href="https://www.aquariumindustries.com.au/wp-content/uploads/2015/03/Freshwater-Fish-Compatibility-Chart.pdf" target="_blank" rel="noopener noreferrer">Aquarium Industries — tabela de compatibilidade de água doce</a></li>
+      
+        <li><a href="https://www.mediawiki.org/wiki/Wikimedia_REST_API" target="_blank" rel="noopener noreferrer">Wikimedia REST API — imagens principais das páginas dos táxons</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Aquarium_plants_and_fish.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons — imagem do aquário plantado no destaque</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <dialog id="fishModal" class="fish-modal" aria-label="Ficha do peixe">
+    <button class="close-modal" id="closeModal" type="button" aria-label="Fechar"><i class="bx bx-x"></i></button>
+    <div id="modalContent"></div>
+  </dialog>
+
+  <footer class="footer">
+    <p><i class="bx bx-droplet"></i> AquaWiki — aquarismo em HTML, CSS e JavaScript puro.</p>
+    <a href="#topo"><i class="bx bx-up-arrow-alt"></i> Voltar ao topo</a>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo"><i class="bx bx-chevron-up"></i></button>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
