@@ -2738,18 +2738,7 @@ function setupBackToTop() {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-/* ── Parallax no hero ── */
-function setupParallax() {
-  const heroPhoto = $('.hero-photo img');
-  if (!heroPhoto) return;
-  window.addEventListener('scroll', () => {
-    const rect = heroPhoto.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-    const speed = 0.15;
-    const offset = (rect.top - window.innerHeight / 2) * speed;
-    heroPhoto.style.transform = `translateY(${offset}px) scale(1.05)`;
-  }, { passive: true });
-}
+
 
 /* ── 3D Tilt nos cards ── */
 function setupCardTilt() {
@@ -3126,7 +3115,6 @@ setupActiveNav();
 setupRipple();
 setupBubbles();
 setupBackToTop();
-setupParallax();
 setupCardTilt();
 setupTankSimulator();
 handleDeepLink();
