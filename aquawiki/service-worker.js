@@ -1,4 +1,4 @@
-const CACHE_NAME = 'aquawiki-v1';
+const CACHE_NAME = 'aquawiki-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
