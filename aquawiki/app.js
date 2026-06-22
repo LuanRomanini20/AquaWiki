@@ -1339,7 +1339,7 @@ const fishData = [
     "zone": "Meio (nada de cabeça para baixo)",
     "school": "Grupo",
     "diet": "Onívoro",
-    "summary": "Bagre africano que nada de cabeça para baixo, capturando食物na superfície.",
+    "summary": "Bagre africano que nada de cabeça para baixo, capturando alimentos na superfície.",
     "care": "Noturno e tímido. Mantenha grupo e ofereça esconderijos. Alimente ao entardecer.",
     "tags": ["bagre", "africano", "noturno"]
   },
@@ -2104,6 +2104,14 @@ function parseMaxCm(sizeText) {
   return nums.length ? Math.max(...nums) : 0;
 }
 
+function sizeCategory(sizeText) {
+  const max = parseMaxCm(sizeText);
+  if (max <= 5) return 'nano';
+  if (max <= 10) return 'small';
+  if (max <= 20) return 'medium';
+  return 'large';
+}
+
 function difficultyBadge(level) {
   if (level.includes('Iniciante')) return 'ok';
   if (level.includes('Intermediário')) return 'warn';
@@ -2127,6 +2135,8 @@ const searchInput = $('#searchInput');
 const waterFilter = $('#waterFilter');
 const difficultyFilter = $('#difficultyFilter');
 const temperFilter = $('#temperFilter');
+const sizeFilter = $('#sizeFilter');
+const favFilter = $('#favFilter');
 const resultCount = $('#resultCount');
 const resetFilters = $('#resetFilters');
 const fishModal = $('#fishModal');
@@ -2248,6 +2258,21 @@ async function hydratePhotoElement(img) {
 }
 
 let photoObserver;
+const photoQueue = [];
+let photoActive = 0;
+const PHOTO_MAX_CONCURRENT = 3;
+
+function processPhotoQueue() {
+  while (photoActive < PHOTO_MAX_CONCURRENT && photoQueue.length) {
+    const img = photoQueue.shift();
+    photoActive++;
+    hydratePhotoElement(img).finally(() => {
+      photoActive--;
+      processPhotoQueue();
+    });
+  }
+}
+
 function hydrateVisiblePhotos() {
   const images = $$('.fish-photo-img:not([data-observed="true"])');
   if (!('IntersectionObserver' in window)) {
@@ -2259,7 +2284,8 @@ function hydrateVisiblePhotos() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           photoObserver.unobserve(entry.target);
-          hydratePhotoElement(entry.target);
+          photoQueue.push(entry.target);
+          processPhotoQueue();
         }
       });
     }, { rootMargin: '260px 0px' });
@@ -2275,7 +2301,7 @@ function fishPhotoMarkup(fish, index, variant = 'card') {
   const note = fish.photoNote || (fish.photoExact ? fish.name : `Representa ${fish.photoTitle}`);
   return `
     <figure class="fish-photo fish-photo-${variant}">
-      <img class="fish-photo-img" data-index="${index}" alt="Carregando foto de ${escapeHtml(fish.common)}" loading="lazy" decoding="async">
+      <img class="fish-photo-img" data-index="${index}" alt="Carregando foto de ${escapeHtml(fish.common)}" width="400" height="300" loading="lazy" decoding="async">
       <figcaption>
         <span class="photo-kind">${type}</span>
         <span class="photo-note">${escapeHtml(note)}</span>
@@ -2338,7 +2364,9 @@ function fishMatches(fish) {
   const byWater = waterFilter.value === 'all' || fish.water === waterFilter.value;
   const byDiff = difficultyFilter.value === 'all' || fish.difficulty === difficultyFilter.value;
   const byTemper = temperFilter.value === 'all' || fish.temper === temperFilter.value;
-  return byText && byWater && byDiff && byTemper;
+  const bySize = sizeFilter.value === 'all' || sizeCategory(fish.size) === sizeFilter.value;
+  const byFav = !favFilter.checked || getFavorites().has(fish.index);
+  return byText && byWater && byDiff && byTemper && bySize && byFav;
 }
 
 function renderFish() {
@@ -2437,55 +2465,60 @@ function renderFilters() {
 }
 
 /* ── Compatibilidade (corrigido) ── */
-function compareFish() {
-  const a = fishData[Number($('#compareA').value)];
-  const b = fishData[Number($('#compareB').value)];
-  if (!a || !b) return;
-
-  const reasons = [];
+function scorePair(a, b) {
   let score = 100;
+  const reasons = [];
 
   const aBroad = a.water.split(' ')[0];
   const bBroad = b.water.split(' ')[0];
-  const sameBroadWater = aBroad === bBroad || a.water.includes(bBroad) || b.water.includes(aBroad);
-  if (!sameBroadWater) {
+  if (aBroad !== bBroad && !a.water.includes(bBroad) && !b.water.includes(aBroad)) {
     score -= 45;
-    reasons.push('Ambientes diferentes ou salinidade incompatível.');
-  } else {
-    reasons.push('Ambiente geral parece compatível.');
+    reasons.push('Ambientes de água incompatíveis');
   }
 
   const aTemp = parseTemp(a.temp);
   const bTemp = parseTemp(b.temp);
   if (aTemp && bTemp) {
-    const overlap = Math.min(aTemp[1], bTemp[1]) - Math.max(aTemp[0], bTemp[1]);
+    const overlap = Math.min(aTemp[1], bTemp[1]) - Math.max(aTemp[0], bTemp[0]);
     if (overlap < 2) {
       score -= 25;
-      reasons.push('Faixa de temperatura tem pouca ou nenhuma sobreposição.');
-    } else {
-      reasons.push(`Temperatura se sobrepõe em cerca de ${overlap} °C.`);
+      reasons.push('Faixa de temperatura com pouca ou nenhuma sobreposição');
     }
   } else {
     score -= 10;
-    reasons.push('Não foi possível comparar faixas de temperatura com precisão.');
+    reasons.push('Não foi possível comparar faixas de temperatura');
   }
 
   const risky = ['Predador', 'Agressivo', 'Mordiscador', 'Territorial'];
-  const aTemperLower = a.temper.toLowerCase();
-  const bTemperLower = b.temper.toLowerCase();
-  if (risky.some(w => aTemperLower.includes(w.toLowerCase()) || bTemperLower.includes(w.toLowerCase()))) {
+  const aT = a.temper.toLowerCase(), bT = b.temper.toLowerCase();
+  if (risky.some(w => aT.includes(w.toLowerCase()) || bT.includes(w.toLowerCase()))) {
     score -= 20;
-    reasons.push('Existe risco por territorialidade, predação ou mordiscadas.');
+    reasons.push('Risco de agressão ou predação');
   }
 
-  const maxA = parseMaxCm(a.size);
-  const maxB = parseMaxCm(b.size);
+  const maxA = parseMaxCm(a.size), maxB = parseMaxCm(b.size);
   if ((maxA >= 30 && maxB <= 5) || (maxB >= 30 && maxA <= 5)) {
     score -= 20;
-    reasons.push('Diferença grande de tamanho pode transformar o menor em presa.');
+    reasons.push('Diferença grande de tamanho — presa potencial');
   }
 
-  score = Math.max(0, Math.min(100, score));
+  const pHa = a.ph.split('–').map(Number), pHb = b.ph.split('–').map(Number);
+  if (pHa.length === 2 && pHb.length === 2) {
+    const phOverlap = Math.min(pHa[1], pHb[1]) - Math.max(pHa[0], pHb[0]);
+    if (phOverlap < 0.5) {
+      reasons.push('Faixas de pH incompatíveis');
+    }
+  }
+
+  return { score: Math.max(0, Math.min(100, score)), reasons };
+}
+
+function compareFish() {
+  const a = fishData[Number($('#compareA').value)];
+  const b = fishData[Number($('#compareB').value)];
+  if (!a || !b) return;
+
+  const { score, reasons } = scorePair(a, b);
 
   let verdict;
   if (score >= 75) verdict = 'Boa chance, com pesquisa por espécie.';
@@ -2618,11 +2651,12 @@ function updateThemeIcon(isLight) {
 function setupTheme() {
   const saved = safeStorage.get('aqua-theme');
   const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-  if (saved === 'light' || (!saved && !prefersDark && saved !== 'dark')) {
-    if (!saved) document.documentElement.classList.add('light');
+  const useLight = saved === 'light' || (!saved && !prefersDark);
+  if (useLight) {
+    document.documentElement.classList.add('light');
+  } else {
+    document.documentElement.classList.remove('light');
   }
-  if (saved === 'light') document.documentElement.classList.add('light');
-  if (saved === 'dark') document.documentElement.classList.remove('light');
 
   const toggle = $('#themeToggle');
   const isLight = document.documentElement.classList.contains('light');
@@ -2676,7 +2710,13 @@ function setupActiveNav() {
       if (entry.isIntersecting) {
         const id = entry.target.id;
         navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          const isActive = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('active', isActive);
+          if (isActive) {
+            link.setAttribute('aria-current', 'section');
+          } else {
+            link.removeAttribute('aria-current');
+          }
         });
       }
     });
@@ -2720,6 +2760,8 @@ function showToast(message, type = 'info', duration = 2500) {
   const icons = { success: 'bx-check-circle', info: 'bx-info-circle', warn: 'bx-error' };
   const toast = document.createElement('div');
   toast.className = `toast toast-${type}`;
+  toast.setAttribute('role', 'alert');
+  toast.setAttribute('aria-live', 'assertive');
   toast.innerHTML = `<i class="bx ${icons[type] || icons.info}"></i><span>${escapeHtml(message)}</span>`;
   container.appendChild(toast);
   setTimeout(() => {
@@ -2770,6 +2812,19 @@ function setupCardTilt() {
 /* ── Tank Simulator ── */
 const tankState = { fishes: [] };
 
+function saveTankState() {
+  safeStorage.set('aquawiki-tank', tankState.fishes.map(f => f.index));
+}
+
+function loadTankState() {
+  const indices = safeStorage.get('aquawiki-tank');
+  if (Array.isArray(indices)) {
+    tankState.fishes = indices
+      .map(i => fishData[i])
+      .filter(Boolean);
+  }
+}
+
 const FISH_EMOJI_MAP = {
   'Doce': '🐟', 'Marinho': '🐠', 'Salobra': '🐡', 'Lago': '🐟'
 };
@@ -2782,52 +2837,11 @@ function getFishEmoji(water) {
 }
 
 function scorePairA(a, b) {
-  let score = 100;
-  const aBroad = a.water.split(' ')[0];
-  const bBroad = b.water.split(' ')[0];
-  if (aBroad !== bBroad && !a.water.includes(bBroad) && !b.water.includes(aBroad)) score -= 45;
-  const aTemp = parseTemp(a.temp);
-  const bTemp = parseTemp(b.temp);
-  if (aTemp && bTemp) {
-    const overlap = Math.min(aTemp[1], bTemp[1]) - Math.max(aTemp[0], bTemp[0]);
-    if (overlap < 2) score -= 25;
-  }
-  const risky = ['predador', 'agressivo', 'mordiscador', 'territorial'];
-  const aT = a.temper.toLowerCase(), bT = b.temper.toLowerCase();
-  if (risky.some(w => aT.includes(w) || bT.includes(w))) score -= 20;
-  const maxA = parseMaxCm(a.size), maxB = parseMaxCm(b.size);
-  if ((maxA >= 30 && maxB <= 5) || (maxB >= 30 && maxA <= 5)) score -= 20;
-  return Math.max(0, Math.min(100, score));
+  return scorePair(a, b).score;
 }
 
 function getConflictReasons(a, b) {
-  const reasons = [];
-  const aBroad = a.water.split(' ')[0];
-  const bBroad = b.water.split(' ')[0];
-  if (aBroad !== bBroad && !a.water.includes(bBroad) && !b.water.includes(aBroad)) {
-    reasons.push('Ambientes de água incompatíveis');
-  }
-  const aTemp = parseTemp(a.temp);
-  const bTemp = parseTemp(b.temp);
-  if (aTemp && bTemp) {
-    const overlap = Math.min(aTemp[1], bTemp[1]) - Math.max(aTemp[0], bTemp[0]);
-    if (overlap < 2) reasons.push(`Temperatura com pouca sobreposição (${overlap} °C)`);
-  }
-  const risky = ['predador', 'agressivo', 'mordiscador', 'territorial'];
-  const aT = a.temper.toLowerCase(), bT = b.temper.toLowerCase();
-  if (risky.some(w => aT.includes(w) || bT.includes(w))) {
-    reasons.push('Risco de agressão ou predação');
-  }
-  const maxA = parseMaxCm(a.size), maxB = parseMaxCm(b.size);
-  if ((maxA >= 30 && maxB <= 5) || (maxB >= 30 && maxA <= 5)) {
-    reasons.push('Diferença grande de tamanho — presa potencial');
-  }
-  const pHa = a.ph.split('–').map(Number), pHb = b.ph.split('–').map(Number);
-  if (pHa.length === 2 && pHb.length === 2) {
-    const phOverlap = Math.min(pHa[1], pHb[1]) - Math.max(pHa[0], pHb[0]);
-    if (phOverlap < 0.5) reasons.push('Faixas de pH incompatíveis');
-  }
-  return reasons;
+  return scorePair(a, b).reasons;
 }
 
 function calcTankScore() {
@@ -2936,7 +2950,7 @@ function renderTankScore() {
     summaryEl.innerHTML = `
       <div class="tank-summary-item"><i class="bx bx-fish"></i> ${tankState.fishes.length} peixe${tankState.fishes.length > 1 ? 's' : ''}</div>
       <div class="tank-summary-item"><i class="bx bx-globe"></i> ${waters.join(', ')}</div>
-      ${minTemp !== null ? `<div class="tank-summary-item"><i class="bx bxthermometer"></i> ${minTemp}–${maxTemp} °C</div>` : ''}
+      ${minTemp !== null ? `<div class="tank-summary-item"><i class="bx bx-thermometer"></i> ${minTemp}–${maxTemp} °C</div>` : ''}
       <div class="tank-summary-item"><i class="bx bx-expand"></i> Até ${maxFish} cm</div>
     `;
   } else if (summaryEl) {
@@ -2955,6 +2969,7 @@ function addFishToTank(index) {
   const fish = fishData[index];
   if (!fish) return;
   tankState.fishes.push(fish);
+  saveTankState();
   renderTank();
   showToast(`${fish.common.split('/')[0].trim()} adicionado ao tanque`, 'success');
 }
@@ -2962,6 +2977,7 @@ function addFishToTank(index) {
 function removeFishFromTank(index) {
   const fish = tankState.fishes.find(f => f.index === index);
   tankState.fishes = tankState.fishes.filter(f => f.index !== index);
+  saveTankState();
   renderTank();
   if (fish) showToast(`${fish.common.split('/')[0].trim()} removido`, 'warn');
 }
@@ -3007,11 +3023,13 @@ function setupTankSimulator() {
   if (clear) {
     clear.addEventListener('click', () => {
       tankState.fishes = [];
+      saveTankState();
       renderTank();
       showToast('Tanque limpo', 'info');
     });
   }
 
+  loadTankState();
   renderTank();
 }
 
@@ -3081,15 +3099,18 @@ fillSelect(temperFilter, uniq(fishData.map(f => f.temper)));
 const renderFishDebounced = debounce(renderFish, 120);
 searchInput.addEventListener('input', renderFishDebounced);
 searchInput.addEventListener('change', renderFish);
-[waterFilter, difficultyFilter, temperFilter].forEach(select =>
+[waterFilter, difficultyFilter, temperFilter, sizeFilter].forEach(select =>
   select.addEventListener('change', renderFish)
 );
+favFilter.addEventListener('change', renderFish);
 
 resetFilters.addEventListener('click', () => {
   searchInput.value = '';
   waterFilter.value = 'all';
   difficultyFilter.value = 'all';
   temperFilter.value = 'all';
+  sizeFilter.value = 'all';
+  favFilter.checked = false;
   renderFish();
   showToast('Filtros limpos', 'info');
 });
