@@ -7,7 +7,10 @@ const STATIC_ASSETS = [
   './manifest.json',
   './assets/logo-dark.png',
   './assets/logo-light.png',
-  'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+  './vendor/boxicons.min.css',
+  './vendor/boxicons.woff2',
+  './vendor/boxicons.woff',
+  './vendor/boxicons.ttf'
 ];
 
 self.addEventListener('install', (event) => {
