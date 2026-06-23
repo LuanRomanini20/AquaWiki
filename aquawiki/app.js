@@ -1430,6 +1430,644 @@ const fishData = [
   }
 ];
 
+/* ── Invertebrados ── */
+const invertData = [
+  {
+    "name": "Neocaridina davidi",
+    "common": "Camarão cherry",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "20–28 °C",
+    "ph": "6.0–8.0",
+    "diet": "Detritívoro / algas",
+    "summary": "Camarão colorido e resistente. Excelente para controle de algas e limpeza. Se reproduz facilmente em cativeiro.",
+    "care": "Sensível a pesticidas e cobre. Não usar medicamentos com cobre no aquário. Evitar peixes predadores.",
+    "tags": ["limpeza", "algas", "reprodutor", "nano"]
+  },
+  {
+    "name": "Neocaridina davidi (Blue)",
+    "common": "Camarão azul",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "20–28 °C",
+    "ph": "6.0–8.0",
+    "diet": "Detritívoro / algas",
+    "summary": "Variante azul do camarão cherry. Mesmos cuidados e comportamento. Manter separado de outras cores para preservar a coloração.",
+    "care": "Não misturar com outras cores de Neocaridina. Sensível a cobre e pesticidas.",
+    "tags": ["limpeza", "algas", "colorido", "nano"]
+  },
+  {
+    "name": "Caridina cantonensis",
+    "common": "Camarão crystal red",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Intermediário",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "22–26 °C",
+    "ph": "5.5–6.8",
+    "diet": "Detritívoro / algas",
+    "summary": "Camarão ornamentai de águas macias e ácidas. Coloração branca e vermelha marcante. Mais exigente que o cherry.",
+    "care": "Água macia e levemente ácida (GH 4-6, KH 0-2). Usar substrato active. Sensível a flutuações de parâmetros.",
+    "tags": ["ornamental", "soft water", "exigente"]
+  },
+  {
+    "name": "Macrobrachium rosenbergii",
+    "common": "Camarão-gigante de rios",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Avançado",
+    "temper": "Territorial",
+    "size": "15–20 cm",
+    "tank": "100 L+",
+    "temp": "24–30 °C",
+    "ph": "6.5–8.0",
+    "diet": "Onívoro",
+    "summary": "Camarão de grande porte que pode se tornar territorial. Precisa de espaço e esconderijos. Não indicado para comunitários.",
+    "care": "Pode ser agressivo com camarões menores. Precisa de água limpa e oxigenada. Cresce rápido.",
+    "tags": ["grande", "territorial", "rio"]
+  },
+  {
+    "name": "Atyopsis moluccensis",
+    "common": "Camarão sieve / filter",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Intermediário",
+    "temper": "Pacifico",
+    "size": "8–10 cm",
+    "tank": "40 L+",
+    "temp": "22–28 °C",
+    "ph": "6.0–7.5",
+    "diet": "Filtrador",
+    "summary": "Camarão filtrador que se alimenta de micropartículas suspensas na água. Comportamento pacífico e interessante.",
+    "care": "Precisa de correnteza para se alimentar. Alimentação complementar com pó filtrante. Não competir por comida com peixes rápidos.",
+    "tags": ["filtrador", "pacífico", "interessante"]
+  },
+  {
+    "name": "Caridina logemanni",
+    "common": "Camarão amano",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "4–6 cm",
+    "tank": "20 L+",
+    "temp": "20–26 °C",
+    "ph": "6.0–7.5",
+    "diet": "Detritívoro / algas",
+    "summary": "Camarão Amano — o melhor limpador de algas filamentosas. Não se reproduz em água doce (larvas precisam de sal).",
+    "care": "Excelente para controlar algas. Não se reproduz em cativeiro. Pode ser comido por peixes grandes.",
+    "tags": ["limpeza", "algas", "filamentosas"]
+  },
+  {
+    "name": "Neocaridina davidi (Snow)",
+    "common": "Camarão snow white",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "20–28 °C",
+    "ph": "6.0–8.0",
+    "diet": "Detritívoro / algas",
+    "summary": "Variante branca e translúcida do camarão cherry. Fácil de manter e reproduzir. Visual elegante.",
+    "care": "Mesmos cuidados do cherry. Evitar misturar com outras cores de Neocaridina.",
+    "tags": ["limpeza", "branco", "nano"]
+  },
+  {
+    "name": "Neocaridina davidi (Orange)",
+    "common": "Camarão orange",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "20–28 °C",
+    "ph": "6.0–8.0",
+    "diet": "Detritívoro / algas",
+    "summary": "Variante laranja vibrante do camarão cherry. Mantém boa coloração em águas levemente alcalinas.",
+    "care": "Mesmos cuidados do cherry. A coloração laranja se intensifica com fundo escuro.",
+    "tags": ["limpeza", "colorido", "nano"]
+  },
+  {
+    "name": "Caridina cf. cantonensis (Taiwan Bee)",
+    "common": "Camarão Taiwan Bee",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Avançado",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "20–24 °C",
+    "ph": "5.0–6.2",
+    "diet": "Detritívoro / algas",
+    "summary": "Linagem selecta de Crystal Red/Black. Cores intensas (Pinto, Shadow, King Kong). Exigente em parâmetros.",
+    "care": "Água muito macia (GH 4-6, KH 0-2, TDS 100-140). Substrato active obrigatório. Temperatura estável é crítica.",
+    "tags": ["ornamental", "exigente", "selecta"]
+  },
+  {
+    "name": "Caridina dennerli",
+    "common": "Camarão sulawesi",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Avançado",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "20 L+",
+    "temp": "26–30 °C",
+    "ph": "7.5–8.5",
+    "diet": "Detritívoro / algas",
+    "summary": "Camarão endêmico do Lago Matano, Sulawesi. Coloração azul-escura com manchas vermelhas. Águas alcalinas e quentes.",
+    "care": "Água quente e alcalina (diferente da maioria dos camarões). Manter em espécie. Precisa de algas no aquário.",
+    "tags": ["sulawesi", "alcalino", "endêmico"]
+  },
+  {
+    "name": "Amano caridina",
+    "common": "Camarão limpa-filtro",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "5–7 cm",
+    "tank": "20 L+",
+    "temp": "20–26 °C",
+    "ph": "6.0–7.5",
+    "diet": "Detritívoro / algas",
+    "summary": "Camarão Amano de maior porte. Excelente limpador de algas e detritos. Não se reproduz em água doce.",
+    "care": "Não confundir com camarão amano comum (maior). Precisa de水量 abundante. Evitar peixes grandes.",
+    "tags": ["limpeza", "algas", "grande"]
+  },
+  {
+    "name": "Caridina multidentata",
+    "common": "Caramujo neritina",
+    "category": "Caracol",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "22–28 °C",
+    "ph": "7.0–8.5",
+    "diet": "Algas / raspador",
+    "summary": "Caracol ninja — excelente raspador de algas em vidro e decoração. Não se reproduz em água doce (larvas precisam de sal).",
+    "care": "Pode deixar ovos brancos incrustados no vidro (inofensivos). Não consegue virar de costas se cair de cabeça para baixo.",
+    "tags": ["limpeza", "algas", "vidro"]
+  },
+  {
+    "name": "Pomacea bridgesii",
+    "common": "Caracol apple / mystery",
+    "category": "Caracol",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "4–6 cm",
+    "tank": "20 L+",
+    "temp": "20–28 °C",
+    "ph": "7.0–8.0",
+    "diet": "Onívoro / algas",
+    "summary": "Caracol grande e colorido. Excelente para limpeza. Diferente do mystery snail, não come plantas vivas saudáveis.",
+    "care": "Precisa de cálcio para a concha. Pode se reproduzir rapidamente. As fêmeas colocam ovos acima da linha d'água.",
+    "tags": ["limpeza", "grande", "colorido"]
+  },
+  {
+    "name": "Planorbarius corneus",
+    "common": "Caracol planorbidae",
+    "category": "Caracol",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "15–28 °C",
+    "ph": "6.5–8.0",
+    "diet": "Algas / detritos",
+    "summary": "Caracol em espiral. Comestível para peixes grandes. Alimenta-se de algas e detritos. Se reproduz rapidamente.",
+    "care": "Pode se tornar pragă se não controlado. Peixes como bettas e molinésias comem os filhotes. Remover ovos se necessário.",
+    "tags": ["limpeza", "reprodutor", "alimento"]
+  },
+  {
+    "name": "Assassina (Clea helena)",
+    "common": "Caracol assassino",
+    "category": "Caracol",
+    "water": "Doce tropical",
+    "difficulty": "Intermediário",
+    "temper": "Predador",
+    "size": "2–3 cm",
+    "tank": "20 L+",
+    "temp": "22–28 °C",
+    "ph": "6.5–8.0",
+    "diet": "Carnívoro",
+    "summary": "Caracol predador que controla populações de planorbidas e outros caracóis pragă. Não se reproduz em água doce.",
+    "care": "Come outros caracóis. Usar para controle de pragă. Não mantê-lo sem suplementação (pode morrer de fome).",
+    "tags": ["predador", "controle", "pragă"]
+  },
+  {
+    "name": "Neocaridina davidi (Green)",
+    "common": "Camarão green jade",
+    "category": "Camarão",
+    "water": "Doce tropical",
+    "difficulty": "Iniciante",
+    "temper": "Pacifico",
+    "size": "2–3 cm",
+    "tank": "10 L+",
+    "temp": "20–28 °C",
+    "ph": "6.0–8.0",
+    "diet": "Detritívoro / algas",
+    "summary": "Variante verde escura do camarão cherry. Menos comum que as outras cores. Manter separado para preservar coloração.",
+    "care": "Mesmos cuidados do cherry. A coloração verde se destaca em fundo escuro.",
+    "tags": ["limpeza", "verde", "nano"]
+  }
+];
+
+/* ── Plantas Aquáticas ── */
+const plantData = [
+  {
+    "name": "Eleocharis sp.",
+    "common": "Hairgrass / Erva-d'água",
+    "category": "Foreground",
+    "difficulty": "Intermediário",
+    "light": "Alta",
+    "co2": "Recomendado",
+    "substrate": "Areia fina ou substrato nutritivo",
+    "growth": "Rápido",
+    "zone": "Fundo",
+    "height": "5–10 cm",
+    "summary": "Gramínea fina que forma tapete verde. Ideal para foreground de planted tank.",
+    "care": "Necessita boa iluminação para se espalhar. Pode flutuar se não enraizado. Pode ser usado comSchedulers.",
+    "tags": ["foreground", "tapete", "planted"]
+  },
+  {
+    "name": "Micranthemum 'Monte Carlo'",
+    "common": "Monte Carlo",
+    "category": "Foreground",
+    "difficulty": "Intermediário",
+    "light": "Alta",
+    "co2": "Recomendado",
+    "substrate": "Substrato nutritivo",
+    "growth": "Rápido",
+    "zone": "Fundo",
+    "height": "3–5 cm",
+    "summary": "Planta tapete de crescimento rápido. Forma almofadas verdes densas. Popular em Iwagumi.",
+    "care": "Precisa de muita luz e CO2 para manter crescimento rasteiro. Sem esses, fica leggier.",
+    "tags": ["foreground", "iwagumi", "tapete"]
+  },
+  {
+    "name": "Marsilea hirsuta",
+    "common": "Marsilea / Trevo aquático",
+    "category": "Foreground",
+    "difficulty": "Iniciante",
+    "light": "Baixa a Média",
+    "co2": "Opcional",
+    "substrate": "Qualquer substrato",
+    "growth": "Médio",
+    "zone": "Fundo",
+    "height": "5–10 cm",
+    "summary": "Planta em formato de trevo. Tolerante a baixa luz. Forma tapete denso com tempo.",
+    "care": "Fácil de manter. Cresce melhor com luz moderada. Pode flutuar inicialmente até enraizar.",
+    "tags": ["foreground", "fácil", "tolerante"]
+  },
+  {
+    "name": "Cryptocoryne parva",
+    "common": "Crypt parva",
+    "category": "Foreground",
+    "difficulty": "Iniciante",
+    "light": "Baixa a Média",
+    "co2": "Opcional",
+    "substrate": "Qualquer substrato",
+    "growth": "Lento",
+    "zone": "Fundo",
+    "height": "3–6 cm",
+    "summary": "Menor espécie de Cryptocoryne. Crescimento muito lento mas extremamente resistente.",
+    "care": "Excelente para baixa luz. Pode levar semanas para se estabelecer. Não mexer após plantar.",
+    "tags": ["foreground", "lento", "resistente"]
+  },
+  {
+    "name": "Anubias barteri var. nana",
+    "common": "Anubias nana",
+    "category": "Midground",
+    "difficulty": "Iniciante",
+    "light": "Baixa",
+    "co2": "Não necessário",
+    "substrate": "Driftrock / pedra (não enterrar rizoma)",
+    "growth": "Lento",
+    "zone": "Meio",
+    "height": "5–15 cm",
+    "summary": "Planta resistente e versátil. Pode ser amarrada em madeira ou pedra. Indestrutível.",
+    "care": "NUNCA enterrar o rizoma — causa apodrecimento. Cresce melhor em locais com pouca luz para evitar algas nas folhas.",
+    "tags": ["resistente", "low tech", "driftwood"]
+  },
+  {
+    "name": "Anubias barteri",
+    "common": "Anubias barteri",
+    "category": "Midground",
+    "difficulty": "Iniciante",
+    "light": "Baixa",
+    "co2": "Não necessário",
+    "substrate": "Driftrock / pedra",
+    "growth": "Lento",
+    "zone": "Meio",
+    "height": "15–30 cm",
+    "summary": "Versão maior do Anubias. Folhas grandes e resistentes. Perfeita para.Background em tanques grandes.",
+    "care": "Mesmos cuidados do nana. Folhas grandes podem acumular algas se a iluminação for muito forte.",
+    "tags": ["resistente", "low tech", "folhas grandes"]
+  },
+  {
+    "name": "Microsorum pteropus",
+    "common": "Java Fern",
+    "category": "Midground",
+    "difficulty": "Iniciante",
+    "light": "Baixa a Média",
+    "co2": "Não necessário",
+    "substrate": "Driftrock / pedra",
+    "growth": "Médio",
+    "zone": "Meio",
+    "height": "15–30 cm",
+    "summary": "Clássica planta aquática. Folhas resistentes em formato de fita. Amarrada em madeira ou pedra.",
+    "care": "NUNCA enterrar rizoma. Propagação por folhas — cortar folha madura e colocar no substrato.",
+    "tags": ["resistente", "low tech", "propagação fácil"]
+  },
+  {
+    "name": "Cryptocoryne wendtii",
+    "common": "Crypt wendtii",
+    "category": "Midground",
+    "difficulty": "Iniciante",
+    "light": "Baixa a Média",
+    "co2": "Opcional",
+    "substrate": "Substrato nutritivo",
+    "growth": "Médio",
+    "zone": "Meio",
+    "height": "10–20 cm",
+    "summary": "Planta muito popular em variedades verde e marrom. Tolerante e bonita.",
+    "care": "Pode sofrer 'crypt melt' ao ser replantada — perde folhas mas revida. Não desistir.",
+    "tags": ["resistente", "variável", "popular"]
+  },
+  {
+    "name": "Bucephalandra sp.",
+    "common": "Bucephalandra",
+    "category": "Midground",
+    "difficulty": "Intermediário",
+    "light": "Baixa a Média",
+    "co2": "Opcional",
+    "substrate": "Driftrock / pedra",
+    "growth": "Lento",
+    "zone": "Meio",
+    "height": "5–15 cm",
+    "summary": "Planta epífita de Bornéu. Folhas com textura única. Muitas variedades com cores diferentes.",
+    "care": "Similar ao Anubias — amarrar em madeira/pedra. Crescimento lento. Evitar algas nas folhas.",
+    "tags": ["epífita", "ornamental", "bornéu"]
+  },
+  {
+    "name": "Vallisneria spiralis",
+    "common": "Vallisneria",
+    "category": "Background",
+    "difficulty": "Iniciante",
+    "light": "Média",
+    "co2": "Opcional",
+    "substrate": "Substrato nutritivo",
+    "growth": "Rápido",
+    "zone": "Fundo",
+    "height": "30–60 cm",
+    "summary": "Planta em fita que forma cortina verde no fundo. Se propaga por stolons.",
+    "care": "Cresce rápido e pode bloquear luz. Cortar folhas mais antigas. Excelente para iniciantes.",
+    "tags": ["background", "rápido", "cortina"]
+  },
+  {
+    "name": "Echinodorus bleheri",
+    "common": "Espada-amazônica",
+    "category": "Background",
+    "difficulty": "Iniciante",
+    "light": "Média",
+    "co2": "Opcional",
+    "substrate": "Substrato nutritivo",
+    "growth": "Médio",
+    "zone": "Fundo",
+    "height": "30–50 cm",
+    "summary": "Planta icônica de aquário. Folhas grandes em formato de espada. Tolerante e imponente.",
+    "care": "Precisa de substrato nutritivo rico. Folhas podem ficar transparentes se faltar nutriente.",
+    "tags": ["background", "clássica", "grande"]
+  },
+  {
+    "name": "Rotala rotundifolia",
+    "common": "Rotala",
+    "category": "Background",
+    "difficulty": "Intermediário",
+    "light": "Alta",
+    "co2": "Recomendado",
+    "substrate": "Substrato nutritivo",
+    "growth": "Rápido",
+    "zone": "Fundo",
+    "height": "20–40 cm",
+    "summary": "Planta de haste que desenvolve cores avermelhadas com boa iluminação. Popular em layouts.",
+    "care": "Precisa de muita luz e CO2 para coloração vermelha. Pode ficar verde em baixa luz.",
+    "tags": ["background", "vermelho", "alta luz"]
+  },
+  {
+    "name": "Ludwigia repens",
+    "common": "Ludwigia",
+    "category": "Background",
+    "difficulty": "Iniciante",
+    "light": "Média a Alta",
+    "co2": "Opcional",
+    "substrate": "Substrato nutritivo",
+    "growth": "Médio",
+    "zone": "Meio/Fundo",
+    "height": "15–30 cm",
+    "summary": "Planta com folhas que variam de verde a laranja/vermelho. Crescimento horizontal e vertical.",
+    "care": "Fácil de propagar — cortar haste e replantar. Cores melhores com mais luz.",
+    "tags": ["background", "colorido", "fácil"]
+  },
+  {
+    "name": "Hygrophila polysperma",
+    "common": "Hygrophila",
+    "category": "Background",
+    "difficulty": "Iniciante",
+    "light": "Baixa a Alta",
+    "co2": "Não necessário",
+    "substrate": "Qualquer",
+    "growth": "Muito rápido",
+    "zone": "Fundo",
+    "height": "30–60 cm",
+    "summary": "Planta praticamente indestrutível. Cresce em qualquer condição. Pode ser considerada invasora.",
+    "care": "Cresce tão rápido que precisa de podas semanais. Controlar senão domina o aquário.",
+    "tags": ["background", "invasora", "fácil"]
+  },
+  {
+    "name": "Salvinia auriculata",
+    "common": "Salvinia",
+    "category": "Flutuante",
+    "difficulty": "Iniciante",
+    "light": "Média",
+    "co2": "Não necessário",
+    "substrate": "Nenhuma (flutuante)",
+    "growth": "Rápido",
+    "zone": "Superfície",
+    "height": "Flutuante",
+    "summary": "Planta flutuante com folhas peludas que formam tapete na superfície. Ótima para filtragem natural.",
+    "care": "Cobrir mais de 50% da superfície pode reduzir luz demais. Podar regularmente.",
+    "tags": ["flutuante", "filtragem natural", "sombra"]
+  },
+  {
+    "name": "Lemna minor",
+    "common": "Duckweed / Lentilha-d'água",
+    "category": "Flutuante",
+    "difficulty": "Iniciante",
+    "light": "Média",
+    "co2": "Não necessário",
+    "substrate": "Nenhuma (flutuante)",
+    "growth": "Muito rápido",
+    "zone": "Superfície",
+    "height": "Flutuante",
+    "summary": "Pequena planta flutuante que se multiplica rapidamente. Excelente absorvedora de nitratos.",
+    "care": "QUASE impossível de remover uma vez estabelecida. Considerada praga por muitos aquaristas. Usar com cautela.",
+    "tags": ["flutuante", "nitratos", "praga"]
+  },
+  {
+    "name": "Riccia fluitans",
+    "common": "Riccia",
+    "category": "Musgo",
+    "difficulty": "Intermediário",
+    "light": "Média a Alta",
+    "co2": "Recomendado",
+    "substrate": "Amarrada em pedra/madeira",
+    "growth": "Rápido",
+    "zone": "Meio",
+    "height": "2–5 cm",
+    "summary": "Musgo aquatico que forma almofadas verde-claro. Flutua se não amarrado.",
+    "care": "Precisa ser amarrado periodicamente. Pode flutuar e espalhar pela superfície. Bom para iwagumi.",
+    "tags": ["musgo", "iwagumi", "amarrar"]
+  },
+  {
+    "name": "Taxiphyllum barbieri",
+    "common": "Java Moss",
+    "category": "Musgo",
+    "difficulty": "Iniciante",
+    "light": "Baixa",
+    "co2": "Não necessário",
+    "substrate": "Driftrock / pedra / rede",
+    "growth": "Médio",
+    "zone": "Meio",
+    "height": "5–15 cm",
+    "summary": "Musgo mais popular em aquarismo. extremamente tolerante. Cresce em praticamente qualquer condição.",
+    "care": "Amarrar ou colar em superfícies. Excelente para ninhos de reprodução e esconderijos para alevinos.",
+    "tags": ["musgo", "fácil", "reprodução"]
+  }
+];
+
+/* ── Comunidades Pré-montadas ── */
+const communityTemplates = [
+  {
+    name: 'Comunitário Tropical Clássico',
+    minLiters: 60,
+    style: 'Comunitário',
+    description: 'Um tanque equilibrado com peixes de cardume, fundo e meio. Clássico e funcionais.',
+    species: [
+      { name: 'Paracheirodon innesi', common: 'Neon tetra', count: 8 },
+      { name: 'Corydoras paleatus', common: 'Corydoras', count: 4 },
+      { name: 'Trichogaster leeri', common: 'Gourami prata', count: 2 },
+      { name: 'Rasbora heteromorpha', common: 'Rasbora borboleta', count: 6 }
+    ],
+    tips: ['Substrato areia fina para corydoras', 'Plantas densas no fundo', 'Temperatura 24–26 °C', 'Filtro com biomídia generosa']
+  },
+  {
+    name: 'Nano Planted',
+    minLiters: 20,
+    style: 'Nano / Planted',
+    description: 'Tanque pequeno com planta e peixe focal. Perfeito para iniciantes em planted tank.',
+    species: [
+      { name: 'Betta splendens', common: 'Betta', count: 1 },
+      { name: 'Neocaridina davidi', common: 'Camarão cherry', count: 6 },
+      { name: 'Otocinclus vestitus', common: 'Otocinclus', count: 2 }
+    ],
+    tips: ['Evitar peixes que comem camarões', 'Plantas fáceis: Anubias, Java Fern', 'Filtro suave (esponja)', 'Temperatura 24–26 °C']
+  },
+  {
+    name: 'Cardume Grande',
+    minLiters: 100,
+    style: 'Cardume',
+    description: 'Tanque espaçoso com cardumes grandes e peixes ativos. Efeito visual impressionante.',
+    species: [
+      { name: 'Hyphessobrycon amandae', common: 'Tetra ember', count: 15 },
+      { name: 'Trigonostigma heteromorpha', common: 'Rasbora borboleta', count: 10 },
+      { name: 'Corydoras aeneus', common: 'Corydoras verde', count: 6 },
+      { name: 'Poropampus opercularis', common: 'Rasbora galaxy', count: 8 }
+    ],
+    tips: ['Mínimo 6–8 indivíduos por espécie', 'Espaço nadar entre cardumes', 'Plantas altas nos cantos', 'Alimentação variada e moderada']
+  },
+  {
+    name: 'Ciclídeos Anões',
+    minLiters: 80,
+    style: 'Ciclídeos',
+    description: 'Comunidade de ciclídeos anões americanos. Territoriais mas gerenciáveis.',
+    species: [
+      { name: 'Apistogramma cacatuoides', common: 'Apistograma', count: 2 },
+      { name: 'Mikrogeophagus ramirezi', common: 'Ramirezi', count: 2 },
+      { name: 'Krebs (Kribensis)', common: 'Kribensis', count: 2 },
+      { name: 'Corydoras julii', common: 'Corydoras julii', count: 4 }
+    ],
+    tips: ['Esconderijos com pedras e raízes', 'Territórios bem definidos', 'pH levemente ácido (6.0–6.8)', 'Evitar peixes muito rápidos']
+  },
+  {
+    name: 'Kinguios',
+    minLiters: 150,
+    style: 'Kinguios',
+    description: 'Tanque grande para kinguios. Produzem muita sujeira — filtragem superdimensionada.',
+    species: [
+      { name: 'Carassius auratus', common: 'Kinguio', count: 3 },
+      { name: 'Hypostomus plecostomus', common: 'Pleco', count: 1 },
+      { name: 'Caridina multidentata', common: 'Neritina', count: 3 }
+    ],
+    tips: ['Filtragem 10–12x o volume/hora', 'TPAs semanais de 30–40%', 'Substrato fino (sem areia grossa)', 'Temperatura 18–22 °C (frio)']
+  },
+  {
+    name: 'Marinho Básico',
+    minLiters: 100,
+    style: 'Marinho',
+    description: 'Introdução ao marinho com espécies resistentes e populares.',
+    species: [
+      { name: 'Amphiprion ocellaris', common: 'Palhaço', count: 2 },
+      { name: 'Chrysiptera parasema', common: 'Damsel azul', count: 3 },
+      { name: 'Gobiodon okinawae', common: 'Góbio coral', count: 2 }
+    ],
+    tips: ['Ciclagem marinha completa (4–6 semanas)', 'Salinidade 1.023–1.025', 'Protein skimmer obrigatório', 'Live rock como base biológica']
+  },
+  {
+    name: 'Aqua Indígena',
+    minLiters: 80,
+    style: 'Indígena',
+    description: 'Peixes brasileiros em layout que remete a rios naturais. Baixa manutenção.',
+    species: [
+      { name: 'Mimagoniates rheoplepis', common: 'Piaba de rio', count: 8 },
+      { name: 'Crenicichla compressiceps', common: 'Pike', count: 1 },
+      { name: 'Corydoras ehrhardti', common: 'Corydoras', count: 4 },
+      { name: 'Ancistrus sp.', common: 'Acari', count: 2 }
+    ],
+    tips: ['Água moderadamente macia', 'Substrato de areia de rio', 'Raízes e pedras naturais', 'Iluminação moderada']
+  },
+  {
+    name: 'Frio / Lago',
+    minLiters: 40,
+    style: 'Frio',
+    description: 'Tanque sem aquecedor para peixes de águas frias. Ideal para iniciantes.',
+    species: [
+      { name: 'Carassius auratus', common: 'Kinguio', count: 2 },
+      { name: 'Tanichthys albonubes', common: 'Neon de广州', count: 8 },
+      { name: 'Planorbarius corneus', common: 'Planorbidae', count: 3 }
+    ],
+    tips: ['Sem aquecedor (15–22 °C)', 'Evitar aquecimento solar direto', 'Filtragem suave', 'Boa oxigenação']
+  }
+];
+
 const fishPhotoLookup = {
   "Betta splendens": {
     "title": "Betta splendens",
@@ -2144,6 +2782,7 @@ const modalContent = $('#modalContent');
 
 /* ── Selects ── */
 function fillSelect(select, values) {
+  if (!select) return;
   values.forEach(value => {
     const option = document.createElement('option');
     option.value = value;
@@ -2359,19 +2998,20 @@ function toggleFavorite(index, btn) {
 }
 
 function fishMatches(fish) {
-  const q = normalize(searchInput.value.trim());
+  const q = normalize((searchInput?.value || '').trim());
   const byText = !q || fish.searchText.includes(q);
-  const byWater = waterFilter.value === 'all' || fish.water === waterFilter.value;
-  const byDiff = difficultyFilter.value === 'all' || fish.difficulty === difficultyFilter.value;
-  const byTemper = temperFilter.value === 'all' || fish.temper === temperFilter.value;
-  const bySize = sizeFilter.value === 'all' || sizeCategory(fish.size) === sizeFilter.value;
-  const byFav = !favFilter.checked || getFavorites().has(fish.index);
+  const byWater = !waterFilter || waterFilter.value === 'all' || fish.water.includes(waterFilter.value);
+  const byDiff = !difficultyFilter || difficultyFilter.value === 'all' || fish.difficulty.includes(difficultyFilter.value);
+  const byTemper = !temperFilter || temperFilter.value === 'all' || fish.temper.includes(temperFilter.value);
+  const bySize = !sizeFilter || sizeFilter.value === 'all' || sizeCategory(fish.size) === sizeFilter.value;
+  const byFav = !favFilter?.checked || getFavorites().has(fish.index);
   return byText && byWater && byDiff && byTemper && bySize && byFav;
 }
 
 function renderFish() {
+  if (!fishGrid) return;
   const matches = fishData.filter(fishMatches);
-  resultCount.textContent = matches.length;
+  if (resultCount) resultCount.textContent = matches.length;
   const favs = getFavorites();
   fishGrid.innerHTML = matches.map((fish, i) => `
     <article class="fish-card" style="animation-delay:${Math.min(i * 30, 300)}ms" tabindex="0" role="button" data-index="${fish.index}" aria-label="Abrir ficha de ${escapeHtml(fish.common)}">
@@ -2453,7 +3093,9 @@ function openFish(index) {
 
 /* ── Filtros de renderização ── */
 function renderFilters() {
-  $('#filtersGrid').innerHTML = filterData.map(filter => `
+  const el = $('#filtersGrid');
+  if (!el) return;
+  el.innerHTML = filterData.map(filter => `
     <article class="filter-card">
       <strong>${escapeHtml(filter.type)}</strong>
       <h3>${escapeHtml(filter.name)}</h3>
@@ -2502,10 +3144,11 @@ function scorePair(a, b) {
     reasons.push('Diferença grande de tamanho — presa potencial');
   }
 
-  const pHa = a.ph.split('–').map(Number), pHb = b.ph.split('–').map(Number);
+  const pHa = a.ph.split(/[–—-]/).map(Number), pHb = b.ph.split(/[–—-]/).map(Number);
   if (pHa.length === 2 && pHb.length === 2) {
     const phOverlap = Math.min(pHa[1], pHb[1]) - Math.max(pHa[0], pHb[0]);
     if (phOverlap < 0.5) {
+      score -= 15;
       reasons.push('Faixas de pH incompatíveis');
     }
   }
@@ -2514,8 +3157,10 @@ function scorePair(a, b) {
 }
 
 function compareFish() {
-  const a = fishData[Number($('#compareA').value)];
-  const b = fishData[Number($('#compareB').value)];
+  const elA = $('#compareA'), elB = $('#compareB'), resultEl = $('#compareResult');
+  if (!elA || !elB || !resultEl) return;
+  const a = fishData[Number(elA.value)];
+  const b = fishData[Number(elB.value)];
   if (!a || !b) return;
 
   const { score, reasons } = scorePair(a, b);
@@ -2525,7 +3170,7 @@ function compareFish() {
   else if (score >= 45) verdict = 'Cautela: só com planejamento.';
   else verdict = 'Não recomendado.';
 
-  $('#compareResult').innerHTML = `
+  resultEl.innerHTML = `
     <strong>${verdict}</strong><br>
     Pontuação heurística: ${score}/100.
     <ul>${reasons.map(r => `<li>${r}</li>`).join('')}</ul>
@@ -2534,24 +3179,28 @@ function compareFish() {
 }
 
 function renderCompareSelectors() {
+  const elA = $('#compareA'), elB = $('#compareB');
+  if (!elA || !elB) return;
   const options = fishData.map((fish, index) =>
     `<option value="${index}">${escapeHtml(fish.common)}</option>`
   ).join('');
-  $('#compareA').innerHTML = options;
-  $('#compareB').innerHTML = options;
-  $('#compareB').value = '5';
+  elA.innerHTML = options;
+  elB.innerHTML = options;
+  elB.value = '5';
   compareFish();
 }
 
 /* ── Calculadora ── */
 function calculateVolume() {
-  const len = parseFloat($('#len').value);
-  const wid = parseFloat($('#wid').value);
-  const hei = parseFloat($('#hei').value);
-  const profile = Number($('#flowProfile').value);
+  const lenEl = $('#len'), widEl = $('#wid'), heiEl = $('#hei'), profileEl = $('#flowProfile'), resultEl = $('#calcResult');
+  if (!lenEl || !resultEl) return;
+  const len = parseFloat(lenEl.value);
+  const wid = parseFloat(widEl.value);
+  const hei = parseFloat(heiEl.value);
+  const profile = Number(profileEl.value);
 
   if (!len || !wid || !hei || len <= 0 || wid <= 0 || hei <= 0) {
-    $('#calcResult').innerHTML = `<strong>Valores inválidos.</strong> Preencha comprimento, largura e altura com números maiores que 0.`;
+    resultEl.innerHTML = `<strong>Valores inválidos.</strong> Preencha comprimento, largura e altura com números maiores que 0.`;
     return;
   }
 
@@ -2569,7 +3218,7 @@ function calculateVolume() {
   } else if (liters < 200) {
     advice = 'Volume sólido para comunitário com peixes de tamanho médio. Acará-bandeira, gouramis e muitos ciclídeos anões ficam confortáveis. Dimensione canister com biomídia generosa.';
   } else if (liters < 400) {
-    advice = 'Aquário grande com boas opções. Permite ciclídeos de médio porte, cardumes grandes e layouts elaborados. Para kinguios,Dimensione filtragem e circulação acima do cálculo inicial.';
+    advice = 'Aquário grande com boas opções. Permite ciclídeos de médio porte, cardumes grandes e layouts elaborados. Para kinguios, dimensione filtragem e circulação acima do cálculo inicial.';
   } else {
     advice = 'Grande volume. Permite peixes grandes como oscars, bala sharks e ciclídeos africanos. Filtragem superdimensionada e circulação forte são obrigatórias. Revisar suporte do piso.';
   }
@@ -2583,7 +3232,9 @@ function calculateVolume() {
 
 /* ── Checklist ── */
 function renderChecklist() {
-  $('#checklist').innerHTML = checklistItems.map((item, index) => `
+  const el = $('#checklist');
+  if (!el) return;
+  el.innerHTML = checklistItems.map((item, index) => `
     <label class="check-item"><input type="checkbox" data-check="${index}"><span>${escapeHtml(item)}</span></label>
   `).join('');
   updateProgress();
@@ -2594,15 +3245,20 @@ function updateProgress() {
   const done = checks.filter(c => c.checked).length;
   const pct = checks.length ? Math.round(done / checks.length * 100) : 0;
   const progressBar = $('#progressBar');
-  $('#progressLabel').textContent = `${pct}%`;
-  progressBar.style.width = `${pct}%`;
-  progressBar.parentElement?.setAttribute('aria-valuenow', String(pct));
+  const progressLabel = $('#progressLabel');
+  if (progressBar) {
+    if (progressLabel) progressLabel.textContent = `${pct}%`;
+    progressBar.style.width = `${pct}%`;
+    progressBar.parentElement?.setAttribute('aria-valuenow', String(pct));
+  }
 }
 
 /* ── Guias ── */
 function renderGuide(key = 'iniciante') {
   const guide = guides[key] || guides.iniciante;
-  $('#guidePanel').innerHTML = `
+  const el = $('#guidePanel');
+  if (!el) return;
+  el.innerHTML = `
     <h3>${escapeHtml(guide.title)}</h3>
     <div class="guide-grid">
       ${guide.items.map(([title, text]) =>
@@ -2619,10 +3275,295 @@ function renderGuide(key = 'iniciante') {
 
 /* ── Glossário ── */
 function renderGlossary() {
-  $('#glossary').innerHTML = glossary.map(([term, desc]) =>
+  const el = $('#glossary');
+  if (!el) return;
+  el.innerHTML = glossary.map(([term, desc]) =>
     `<div class="term"><b>${escapeHtml(term)}</b><span>${escapeHtml(desc)}</span></div>`
   ).join('');
 }
+
+/* ── Invertebrados ── */
+const invertSearchInput = $('#invertSearch');
+const invertCategoryFilter = $('#invertCategory');
+const invertDifficultyFilter = $('#invertDifficulty');
+const invertResultCount = $('#invertResultCount');
+const invertGrid = $('#invertGrid');
+
+invertData.forEach((inv, i) => { inv.index = i; inv.searchText = normalize(`${inv.name} ${inv.common} ${inv.category} ${inv.water} ${inv.difficulty} ${inv.temper} ${inv.tags.join(' ')} ${inv.summary}`); });
+
+function invertMatches(inv) {
+  const q = normalize(invertSearchInput.value.trim());
+  const byText = !q || inv.searchText.includes(q);
+  const byCat = invertCategoryFilter.value === 'all' || inv.category === invertCategoryFilter.value;
+  const byDiff = invertDifficultyFilter.value === 'all' || inv.difficulty.includes(invertDifficultyFilter.value);
+  return byText && byCat && byDiff;
+}
+
+function renderInverts() {
+  if (!invertGrid) return;
+  const matches = invertData.filter(invertMatches);
+  if (invertResultCount) invertResultCount.textContent = matches.length;
+  invertGrid.innerHTML = matches.map((inv, i) => `
+    <article class="fish-card invert-card" style="animation-delay:${Math.min(i * 30, 300)}ms" tabindex="0" role="button" data-invert-index="${inv.index}" aria-label="Abrir ficha de ${escapeHtml(inv.common)}">
+      <div class="card-content">
+        <div class="card-top">
+          <div>
+            <h3>${escapeHtml(inv.common)}</h3>
+            <p><em>${escapeHtml(inv.name)}</em></p>
+          </div>
+          <span class="badge invert-badge">${escapeHtml(inv.category)}</span>
+        </div>
+        <div class="badge-list">
+          <span class="badge">${escapeHtml(inv.water)}</span>
+          <span class="badge ${difficultyBadge(inv.difficulty)}">${escapeHtml(inv.difficulty)}</span>
+          ${inv.tags.slice(0, 2).map(tag => `<span class="badge">${escapeHtml(tag)}</span>`).join('')}
+        </div>
+        <p>${escapeHtml(inv.summary)}</p>
+        <div class="meta-list">
+          <div><b>Tamanho</b><span>${escapeHtml(inv.size)}</span></div>
+          <div><b>Aquário</b><span>${escapeHtml(inv.tank)}</span></div>
+          <div><b>Temp.</b><span>${escapeHtml(inv.temp)}</span></div>
+          <div><b>pH</b><span>${escapeHtml(inv.ph)}</span></div>
+        </div>
+      </div>
+    </article>
+  `).join('');
+  if (!matches.length) {
+    invertGrid.innerHTML = `<div class="calc-result empty-state"><strong>Nenhum resultado.</strong><br>Remova algum filtro ou pesquise por outro nome.</div>`;
+  }
+}
+
+function openInvert(index) {
+  const inv = invertData[index];
+  if (!inv) return;
+  modalContent.innerHTML = `
+    <div class="modal-inner">
+      <div class="modal-layout">
+        <div>
+          <p class="eyebrow">Ficha rápida</p>
+          <h2 id="fishModalTitle">${escapeHtml(inv.common)}</h2>
+          <p><em>${escapeHtml(inv.name)}</em></p>
+          <div class="badge-list">
+            <span class="badge invert-badge">${escapeHtml(inv.category)}</span>
+            <span class="badge">${escapeHtml(inv.water)}</span>
+            <span class="badge ${difficultyBadge(inv.difficulty)}">${escapeHtml(inv.difficulty)}</span>
+            <span class="badge">${escapeHtml(inv.temper)}</span>
+            ${inv.tags.map(tag => `<span class="badge">${escapeHtml(tag)}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="modal-grid">
+        <div><b>Tamanho adulto</b><span>${escapeHtml(inv.size)}</span></div>
+        <div><b>Aquário mínimo</b><span>${escapeHtml(inv.tank)}</span></div>
+        <div><b>Temperatura</b><span>${escapeHtml(inv.temp)}</span></div>
+        <div><b>pH</b><span>${escapeHtml(inv.ph)}</span></div>
+        <div><b>Alimentação</b><span>${escapeHtml(inv.diet)}</span></div>
+      </div>
+      <div class="modal-desc">
+        <p>${escapeHtml(inv.summary)}</p>
+        <div class="modal-warning"><i class="bx bx-error"></i> <b>Cuidados:</b> ${escapeHtml(inv.care)}</div>
+      </div>
+    </div>
+  `;
+  if (typeof fishModal.showModal === 'function') fishModal.showModal();
+  else fishModal.setAttribute('open', '');
+  $('#fishModalTitle')?.focus();
+}
+
+if (invertGrid) {
+  invertGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.fish-card');
+    if (card && !e.target.closest('.fav-btn')) openInvert(Number(card.dataset.invertIndex));
+  });
+  invertGrid.addEventListener('keydown', (e) => {
+    const card = e.target.closest('.fish-card');
+    if (card && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      openInvert(Number(card.dataset.invertIndex));
+    }
+  });
+}
+
+const renderInvertDebounced = debounce(renderInverts, 120);
+if (invertSearchInput) invertSearchInput.addEventListener('input', renderInvertDebounced);
+[invertCategoryFilter, invertDifficultyFilter].forEach(sel => {
+  if (sel) sel.addEventListener('change', renderInverts);
+});
+$('#resetInvertFilters')?.addEventListener('click', () => {
+  if (invertSearchInput) invertSearchInput.value = '';
+  if (invertCategoryFilter) invertCategoryFilter.value = 'all';
+  if (invertDifficultyFilter) invertDifficultyFilter.value = 'all';
+  renderInverts();
+  showToast('Filtros de invertebrados limpos', 'info');
+});
+
+/* ── Plantas Aquáticas ── */
+const plantSearchInput = $('#plantSearch');
+const plantCategoryFilter = $('#plantCategory');
+const plantDifficultyFilter = $('#plantDifficulty');
+const plantLightFilter = $('#plantLight');
+const plantResultCount = $('#plantResultCount');
+const plantGrid = $('#plantGrid');
+
+plantData.forEach((p, i) => { p.index = i; p.searchText = normalize(`${p.name} ${p.common} ${p.category} ${p.difficulty} ${p.light} ${p.co2} ${p.zone} ${p.tags.join(' ')} ${p.summary}`); });
+
+function plantMatches(plant) {
+  const q = normalize(plantSearchInput.value.trim());
+  const byText = !q || plant.searchText.includes(q);
+  const byCat = plantCategoryFilter.value === 'all' || plant.category === plantCategoryFilter.value;
+  const byDiff = plantDifficultyFilter.value === 'all' || plant.difficulty.includes(plantDifficultyFilter.value);
+  const byLight = plantLightFilter.value === 'all' || plant.light.includes(plantLightFilter.value);
+  return byText && byCat && byDiff && byLight;
+}
+
+function renderPlants() {
+  if (!plantGrid) return;
+  const matches = plantData.filter(plantMatches);
+  if (plantResultCount) plantResultCount.textContent = matches.length;
+  plantGrid.innerHTML = matches.map((p, i) => `
+    <article class="fish-card plant-card" style="animation-delay:${Math.min(i * 30, 300)}ms" tabindex="0" role="button" data-plant-index="${p.index}" aria-label="Abrir ficha de ${escapeHtml(p.common)}">
+      <div class="card-content">
+        <div class="card-top">
+          <div>
+            <h3>${escapeHtml(p.common)}</h3>
+            <p><em>${escapeHtml(p.name)}</em></p>
+          </div>
+          <span class="badge plant-badge">${escapeHtml(p.category)}</span>
+        </div>
+        <div class="badge-list">
+          <span class="badge">${escapeHtml(p.difficulty)}</span>
+          <span class="badge">${escapeHtml(p.light)} luz</span>
+          <span class="badge">${escapeHtml(p.co2)}</span>
+          ${p.tags.slice(0, 2).map(tag => `<span class="badge">${escapeHtml(tag)}</span>`).join('')}
+        </div>
+        <p>${escapeHtml(p.summary)}</p>
+        <div class="meta-list">
+          <div><b>Posição</b><span>${escapeHtml(p.zone)}</span></div>
+          <div><b>Altura</b><span>${escapeHtml(p.height)}</span></div>
+          <div><b>Crescimento</b><span>${escapeHtml(p.growth)}</span></div>
+          <div><b>Substrato</b><span>${escapeHtml(p.substrate)}</span></div>
+        </div>
+      </div>
+    </article>
+  `).join('');
+  if (!matches.length) {
+    plantGrid.innerHTML = `<div class="calc-result empty-state"><strong>Nenhuma planta encontrada.</strong><br>Remova algum filtro ou pesquise por outro nome.</div>`;
+  }
+}
+
+function openPlant(index) {
+  const p = plantData[index];
+  if (!p) return;
+  modalContent.innerHTML = `
+    <div class="modal-inner">
+      <div class="modal-layout">
+        <div>
+          <p class="eyebrow">Ficha rápida</p>
+          <h2 id="fishModalTitle">${escapeHtml(p.common)}</h2>
+          <p><em>${escapeHtml(p.name)}</em></p>
+          <div class="badge-list">
+            <span class="badge plant-badge">${escapeHtml(p.category)}</span>
+            <span class="badge">${escapeHtml(p.difficulty)}</span>
+            <span class="badge">${escapeHtml(p.light)} luz</span>
+            <span class="badge">CO2: ${escapeHtml(p.co2)}</span>
+            ${p.tags.map(tag => `<span class="badge">${escapeHtml(tag)}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="modal-grid">
+        <div><b>Posição</b><span>${escapeHtml(p.zone)}</span></div>
+        <div><b>Altura</b><span>${escapeHtml(p.height)}</span></div>
+        <div><b>Crescimento</b><span>${escapeHtml(p.growth)}</span></div>
+        <div><b>Substrato</b><span>${escapeHtml(p.substrate)}</span></div>
+        <div><b>Luminosidade</b><span>${escapeHtml(p.light)}</span></div>
+      </div>
+      <div class="modal-desc">
+        <p>${escapeHtml(p.summary)}</p>
+        <div class="modal-warning"><i class="bx bx-error"></i> <b>Cuidados:</b> ${escapeHtml(p.care)}</div>
+      </div>
+    </div>
+  `;
+  if (typeof fishModal.showModal === 'function') fishModal.showModal();
+  else fishModal.setAttribute('open', '');
+  $('#fishModalTitle')?.focus();
+}
+
+if (plantGrid) {
+  plantGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.fish-card');
+    if (card) openPlant(Number(card.dataset.plantIndex));
+  });
+  plantGrid.addEventListener('keydown', (e) => {
+    const card = e.target.closest('.fish-card');
+    if (card && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      openPlant(Number(card.dataset.plantIndex));
+    }
+  });
+}
+
+const renderPlantDebounced = debounce(renderPlants, 120);
+if (plantSearchInput) plantSearchInput.addEventListener('input', renderPlantDebounced);
+[plantCategoryFilter, plantDifficultyFilter, plantLightFilter].forEach(sel => {
+  if (sel) sel.addEventListener('change', renderPlants);
+});
+$('#resetPlantFilters')?.addEventListener('click', () => {
+  if (plantSearchInput) plantSearchInput.value = '';
+  if (plantCategoryFilter) plantCategoryFilter.value = 'all';
+  if (plantDifficultyFilter) plantDifficultyFilter.value = 'all';
+  if (plantLightFilter) plantLightFilter.value = 'all';
+  renderPlants();
+  showToast('Filtros de plantas limpos', 'info');
+});
+
+/* ── Comunidades Pré-montadas ── */
+function renderCommunities() {
+  const liters = parseFloat($('#communityVolume')?.value) || 0;
+  const results = $('#communityResults');
+  if (!results) return;
+
+  if (liters < 10) {
+    results.innerHTML = `<div class="calc-result empty-state"><strong>Informe um volume maior.</strong><br>O mínimo para uma comunidade é 10 litros.</div>`;
+    return;
+  }
+
+  const eligible = communityTemplates.filter(t => t.minLiters <= liters);
+
+  if (!eligible.length) {
+    results.innerHTML = `<div class="calc-result empty-state"><strong>Nenhuma comunidade encontrada.</strong><br>Para ${liters}L, considere um aquário nano com betta e camarões cherry.</div>`;
+    return;
+  }
+
+  results.innerHTML = eligible.map((t, i) => `
+    <div class="community-card" style="animation-delay:${i * 80}ms">
+      <div class="community-header">
+        <h3>${escapeHtml(t.name)}</h3>
+        <span class="badge community-style-badge">${escapeHtml(t.style)}</span>
+      </div>
+      <p class="community-desc">${escapeHtml(t.description)}</p>
+      <div class="community-species">
+        ${t.species.map(sp => `
+          <div class="community-species-item">
+            <span class="community-species-count">${sp.count}×</span>
+            <span class="community-species-name">${escapeHtml(sp.common)}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="community-tips">
+        <strong><i class="bx bx-info-circle"></i> Dicas:</strong>
+        <ul>${t.tips.map(tip => `<li>${escapeHtml(tip)}</li>`).join('')}</ul>
+      </div>
+      <div class="community-footer">
+        <span class="community-volume"><i class="bx bx-dock-left"></i> Mínimo: ${t.minLiters}L</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+$('#communityBtn')?.addEventListener('click', renderCommunities);
+$('#communityVolume')?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') renderCommunities();
+});
 
 /* ── Reveal (scroll) ── */
 function setupReveal() {
@@ -2660,20 +3601,23 @@ function setupTheme() {
 
   const toggle = $('#themeToggle');
   const isLight = document.documentElement.classList.contains('light');
-  toggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  updateThemeIcon(isLight);
+  if (toggle) {
+    toggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+    updateThemeIcon(isLight);
 
-  toggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('light');
-    const nowLight = document.documentElement.classList.contains('light');
-    toggle.setAttribute('aria-pressed', nowLight ? 'true' : 'false');
-    updateThemeIcon(nowLight);
-    safeStorage.set('aqua-theme', nowLight ? 'light' : 'dark');
-  });
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light');
+      const nowLight = document.documentElement.classList.contains('light');
+      toggle.setAttribute('aria-pressed', nowLight ? 'true' : 'false');
+      updateThemeIcon(nowLight);
+      safeStorage.set('aqua-theme', nowLight ? 'light' : 'dark');
+    });
+  }
 }
 
 /* ── Contadores animados ── */
 function animateCounter(el, target, duration = 900) {
+  if (!el) return;
   const start = performance.now();
   const initial = 0;
   function tick(now) {
@@ -2700,7 +3644,7 @@ function setupScrollProgress() {
 
 /* ── Active nav link on scroll ── */
 function setupActiveNav() {
-  const sections = ['peixes', 'tanque', 'filtragem', 'guias', 'calculadoras', 'fontes'].map(id => document.getElementById(id)).filter(Boolean);
+  const sections = ['peixes', 'tanque', 'comunidades', 'filtragem', 'guias', 'invertebrados', 'plantas', 'calculadoras', 'fontes'].map(id => document.getElementById(id)).filter(Boolean);
   const navLinks = $$('.nav a');
 
   if (!sections.length || !navLinks.length) return;
@@ -2798,10 +3742,6 @@ function setupCardTilt() {
     const rotateY = ((x - centerX) / centerX) * 4;
     card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
   });
-  grid.addEventListener('mouseleave', (e) => {
-    const card = e.target.closest('.fish-card');
-    if (card) card.style.transform = '';
-  }, true);
   grid.addEventListener('mouseout', (e) => {
     if (e.relatedTarget && e.relatedTarget.closest?.('.fish-card')) return;
     const card = e.target.closest('.fish-card');
@@ -2813,16 +3753,20 @@ function setupCardTilt() {
 const tankState = { fishes: [] };
 
 function saveTankState() {
-  safeStorage.set('aquawiki-tank', tankState.fishes.map(f => f.index));
+  safeStorage.set('aquawiki-tank', JSON.stringify(tankState.fishes.map(f => f.index)));
 }
 
 function loadTankState() {
-  const indices = safeStorage.get('aquawiki-tank');
-  if (Array.isArray(indices)) {
-    tankState.fishes = indices
-      .map(i => fishData[i])
-      .filter(Boolean);
-  }
+  const raw = safeStorage.get('aquawiki-tank');
+  if (!raw) return;
+  try {
+    const indices = JSON.parse(raw);
+    if (Array.isArray(indices)) {
+      tankState.fishes = indices
+        .map(i => fishData[i])
+        .filter(Boolean);
+    }
+  } catch (_) {}
 }
 
 const FISH_EMOJI_MAP = {
@@ -2836,14 +3780,6 @@ function getFishEmoji(water) {
   return '🐟';
 }
 
-function scorePairA(a, b) {
-  return scorePair(a, b).score;
-}
-
-function getConflictReasons(a, b) {
-  return scorePair(a, b).reasons;
-}
-
 function calcTankScore() {
   const n = tankState.fishes.length;
   if (n < 2) return { score: n === 1 ? 100 : null, conflicts: [] };
@@ -2854,11 +3790,10 @@ function calcTankScore() {
     for (let j = i + 1; j < n; j++) {
       const a = tankState.fishes[i];
       const b = tankState.fishes[j];
-      const pairScore = scorePairA(a, b);
+      const { score: pairScore, reasons } = scorePair(a, b);
       totalScore += pairScore;
       pairs++;
       if (pairScore < 80) {
-        const reasons = getConflictReasons(a, b);
         conflicts.push({ a, b, score: pairScore, reasons });
       }
     }
@@ -2870,7 +3805,7 @@ function getFishStatus(fish) {
   let worst = 100;
   for (const other of tankState.fishes) {
     if (other.index === fish.index) continue;
-    const s = scorePairA(fish, other);
+    const { score: s } = scorePair(fish, other);
     if (s < worst) worst = s;
   }
   if (worst >= 75) return 'good';
@@ -3056,32 +3991,34 @@ function handleDeepLink() {
 }
 
 /* ── Eventos ── */
-fishGrid.addEventListener('click', (event) => {
-  const favBtn = event.target.closest('.fav-btn');
-  if (favBtn) {
-    event.stopPropagation();
-    toggleFavorite(Number(favBtn.dataset.fav), favBtn);
-    return;
-  }
-  if (event.target.closest('a')) return;
-  const card = event.target.closest('.fish-card');
-  if (card) openFish(Number(card.dataset.index));
-});
+if (fishGrid) {
+  fishGrid.addEventListener('click', (event) => {
+    const favBtn = event.target.closest('.fav-btn');
+    if (favBtn) {
+      event.stopPropagation();
+      toggleFavorite(Number(favBtn.dataset.fav), favBtn);
+      return;
+    }
+    if (event.target.closest('a')) return;
+    const card = event.target.closest('.fish-card');
+    if (card) openFish(Number(card.dataset.index));
+  });
 
-fishGrid.addEventListener('keydown', (event) => {
-  const card = event.target.closest('.fish-card');
-  if (card && (event.key === 'Enter' || event.key === ' ')) {
-    event.preventDefault();
-    openFish(Number(card.dataset.index));
-  }
-});
+  fishGrid.addEventListener('keydown', (event) => {
+    const card = event.target.closest('.fish-card');
+    if (card && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      openFish(Number(card.dataset.index));
+    }
+  });
+}
 
-$('#closeModal').addEventListener('click', () => {
+$('#closeModal')?.addEventListener('click', () => {
   if (typeof fishModal.close === 'function') fishModal.close();
   else fishModal.removeAttribute('open');
 });
 
-fishModal.addEventListener('click', (event) => {
+fishModal?.addEventListener('click', (event) => {
   if (event.target !== fishModal) return;
   if (typeof fishModal.close === 'function') fishModal.close();
   else fishModal.removeAttribute('open');
@@ -3095,40 +4032,51 @@ document.addEventListener('change', (event) => {
 fillSelect(waterFilter, uniq(fishData.map(f => f.water)));
 fillSelect(difficultyFilter, uniq(fishData.map(f => f.difficulty)));
 fillSelect(temperFilter, uniq(fishData.map(f => f.temper)));
+if (invertDifficultyFilter) fillSelect(invertDifficultyFilter, uniq(invertData.map(i => i.difficulty)));
+if (plantDifficultyFilter) fillSelect(plantDifficultyFilter, uniq(plantData.map(p => p.difficulty)));
 
-const renderFishDebounced = debounce(renderFish, 120);
-searchInput.addEventListener('input', renderFishDebounced);
-searchInput.addEventListener('change', renderFish);
-[waterFilter, difficultyFilter, temperFilter, sizeFilter].forEach(select =>
-  select.addEventListener('change', renderFish)
-);
-favFilter.addEventListener('change', renderFish);
-
-resetFilters.addEventListener('click', () => {
-  searchInput.value = '';
-  waterFilter.value = 'all';
-  difficultyFilter.value = 'all';
-  temperFilter.value = 'all';
-  sizeFilter.value = 'all';
-  favFilter.checked = false;
-  renderFish();
-  showToast('Filtros limpos', 'info');
+if (searchInput) {
+  const renderFishDebounced = debounce(renderFish, 120);
+  searchInput.addEventListener('input', renderFishDebounced);
+  searchInput.addEventListener('change', renderFish);
+}
+[waterFilter, difficultyFilter, temperFilter, sizeFilter].forEach(select => {
+  if (select) select.addEventListener('change', renderFish);
 });
+if (favFilter) favFilter.addEventListener('change', renderFish);
 
-$('#compareBtn').addEventListener('click', compareFish);
-$('#calcBtn').addEventListener('click', calculateVolume);
+if (resetFilters) {
+  resetFilters.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    if (waterFilter) waterFilter.value = 'all';
+    if (difficultyFilter) difficultyFilter.value = 'all';
+    if (temperFilter) temperFilter.value = 'all';
+    if (sizeFilter) sizeFilter.value = 'all';
+    if (favFilter) favFilter.checked = false;
+    renderFish();
+    showToast('Filtros limpos', 'info');
+  });
+}
+
+if ($('#compareBtn')) $('#compareBtn').addEventListener('click', compareFish);
+if ($('#calcBtn')) $('#calcBtn').addEventListener('click', calculateVolume);
 $$('.tab').forEach(tab => tab.addEventListener('click', () => renderGuide(tab.dataset.guide)));
 
-animateCounter($('#fishCount'), fishData.length);
-animateCounter($('#filterCount'), filterData.length);
+try {
+  animateCounter($('#fishCount'), fishData.length);
+  animateCounter($('#filterCount'), filterData.length);
 
-renderFish();
-renderFilters();
-renderCompareSelectors();
-calculateVolume();
-renderChecklist();
-renderGuide();
-renderGlossary();
+  if (fishGrid) renderFish();
+  renderFilters();
+  if ($('#compareA')) renderCompareSelectors();
+  calculateVolume();
+  renderChecklist();
+  renderGuide();
+  renderGlossary();
+  renderInverts();
+  renderPlants();
+} catch (_) {}
+
 setupReveal();
 setupTheme();
 setupScrollProgress();
@@ -3137,9 +4085,9 @@ setupRipple();
 setupBubbles();
 setupBackToTop();
 setupCardTilt();
-setupTankSimulator();
+if ($('#tankVisual')) setupTankSimulator();
 handleDeepLink();
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+  navigator.serviceWorker.register('./service-worker.js').catch(() => {});
 }

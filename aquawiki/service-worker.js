@@ -1,12 +1,12 @@
-const CACHE_NAME = 'aquawiki-v2';
+const CACHE_NAME = 'aquawiki-v3';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/manifest.json',
-  '/assets/logo-dark.png',
-  '/assets/logo-light.png',
+  './',
+  './index.html',
+  './styles.css',
+  './app.js',
+  './manifest.json',
+  './assets/logo-dark.png',
+  './assets/logo-light.png',
   'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
 ];
 

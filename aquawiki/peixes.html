@@ -43,7 +43,7 @@
     </a>
         <nav class="nav" aria-label="Navegação principal">
       <a href="index.html"><i class="bx bx-home"></i> Início</a>
-      <a href="peixes.html"><i class="bx bx-fish"></i> Peixes</a>
+      <a href="peixes.html" class="active"><i class="bx bx-fish"></i> Peixes</a>
       <a href="ferramentas.html"><i class="bx bx-dock-left"></i> Ferramentas</a>
       <a href="conteudo.html"><i class="bx bx-book-open"></i> Conteúdo</a>
     </nav>
@@ -51,54 +51,60 @@
   </header>
 
   <main id="conteudo">
-    <section class="hero section-pad" aria-labelledby="hero-title">
-      <div class="hero-content reveal">
-        <p class="eyebrow">Aquarismo de água doce, marinho, salobra e lagos</p>
-        <h1 id="hero-title">Peixes saudáveis, água estável e aquários cheios de vida.</h1>
-        <p class="hero-text">Conheça espécies ornamentais, escolha filtragem com segurança, compare compatibilidade e monte um ambiente estável antes de receber a fauna.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="peixes.html"><i class="bx bx-fish"></i> Explorar peixes</a>
-          <a class="btn ghost" href="ferramentas.html"><i class="bx bx-calculator"></i> Calcular meu aquário</a>
-        </div>
+    <section class="section-pad" id="peixes" aria-labelledby="peixes-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">Catálogo pesquisável</p>
+        <h2 id="peixes-title">Tipos e grupos de peixes para aquarismo</h2>
+        <p>Filtre por ambiente, dificuldade, comportamento ou pesquise por nome. Clique em um card para ver detalhes rápidos, foto, fonte visual e cuidados.</p>
       </div>
-      <aside class="hero-card reveal" aria-label="Resumo do AquaWiki">
-        <figure class="hero-photo">
-          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aquarium_plants_and_fish.jpg" alt="Aquário plantado com peixes ornamentais" width="800" height="600" loading="eager" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" />
-          <figcaption>Aquário plantado real via Wikimedia Commons</figcaption>
-        </figure>
-        <div class="stat-grid">
-          <div><i class="bx bx-fish stat-icon"></i><strong id="fishCount">0</strong><span>perfis</span></div>
-          <div><i class="bx bx-filter stat-icon"></i><strong id="filterCount">0</strong><span>filtragens</span></div>
-          <div><i class="bx bx-droplet stat-icon"></i><strong>4</strong><span>tipos de água</span></div>
-          <div><i class="bx bx-book-open stat-icon"></i><strong>5</strong><span>guias completos</span></div>
-        </div>
-      </aside>
+
+      <div class="toolbar reveal" role="search">
+        <label class="search-box">
+          <span><i class="bx bx-search"></i> Buscar</span>
+          <input id="searchInput" type="search" placeholder="Ex.: betta, ciclídeo, marinho, fundo..." autocomplete="off" aria-describedby="resultCount" />
+        </label>
+        <label>
+          <span><i class="bx bx-globe"></i> Ambiente</span>
+          <select id="waterFilter"><option value="all">Todos</option></select>
+        </label>
+        <label>
+          <span><i class="bx bx-bar-chart-alt-2"></i> Dificuldade</span>
+          <select id="difficultyFilter"><option value="all">Todas</option></select>
+        </label>
+        <label>
+          <span><i class="bx bx-heart"></i> Temperamento</span>
+          <select id="temperFilter"><option value="all">Todos</option></select>
+        </label>
+        <label>
+          <span><i class="bx bx-ruler"></i> Tamanho</span>
+          <select id="sizeFilter"><option value="all">Todos</option><option value="nano">Nano (até 5 cm)</option><option value="small">Pequeno (5-10 cm)</option><option value="medium">Médio (10-20 cm)</option><option value="large">Grande (20+ cm)</option></select>
+        </label>
+        <label class="fav-toggle">
+          <span><i class="bx bx-heart"></i> Favoritos</span>
+          <input id="favFilter" type="checkbox" />
+        </label>
+      </div>
+
+      <div class="result-row reveal">
+        <p aria-live="polite"><strong id="resultCount">0</strong> resultados encontrados.</p>
+        <button id="resetFilters" class="btn mini" type="button"><i class="bx bx-reset"></i> Limpar filtros</button>
+      </div>
+
+      <div class="fish-grid" id="fishGrid" aria-live="polite"></div>
     </section>
 
-    <section class="quick section-pad reveal" aria-labelledby="principios-title">
+    <section class="section-pad panel-section reveal" id="compatibilidade" aria-labelledby="compatibilidade-title">
       <div class="section-head compact">
-        <p class="eyebrow">Princípios que evitam 80% dos erros</p>
-        <h2 id="principios-title">Antes de comprar peixe, valide o ambiente.</h2>
+        <p class="eyebrow">Compatibilidade rápida</p>
+        <h2 id="compatibilidade-title">Compare dois grupos antes de misturar.</h2>
+        <p>Este verificador usa regras simples: ambiente, faixa de temperatura, comportamento e tamanho. Ele não substitui pesquisa por espécie.</p>
       </div>
-      <div class="principles">
-        <article><span class="principle-icon"><i class="bx bx-droplet"></i></span><h3>Cicle o aquário</h3><p>Amônia e nitrito devem estar zerados antes da fauna entrar. A filtragem biológica é o coração do sistema.</p></article>
-        <article><span class="principle-icon"><i class="bx bx-slider"></i></span><h3>Compare parâmetros</h3><p>Temperatura, pH, dureza, salinidade, tamanho adulto e comportamento precisam combinar.</p></article>
-        <article><span class="principle-icon"><i class="bx bx-expand-alt"></i></span><h3>Pense no adulto</h3><p>O erro clássico é comprar peixe pequeno que vira peixe grande, territorial ou predador.</p></article>
-        <article><span class="principle-icon"><i class="bx bx-wrench"></i></span><h3>Manutenção vence milagre</h3><p>TPAs, testes, quarentena e alimentação moderada são mais importantes que produtos "instantâneos".</p></article>
+      <div class="compare-box">
+        <label><span>Peixe 1</span><select id="compareA"></select></label>
+        <label><span>Peixe 2</span><select id="compareB"></select></label>
+        <button class="btn primary" id="compareBtn" type="button"><i class="bx bx-git-compare"></i> Comparar</button>
       </div>
-    </section>
-
-    <section class="section-pad reveal">
-      <div class="section-head compact">
-        <p class="eyebrow">Explore o AquaWiki</p>
-        <h2>O que você encontra aqui</h2>
-      </div>
-      <div class="principles">
-        <a href="peixes.html" class="feature-link"><span class="principle-icon"><i class="bx bx-fish"></i></span><h3>Catálogo de peixes</h3><p>100+ perfis com fotos, parâmetros, cuidados e filtros avançados.</p></a>
-        <a href="ferramentas.html" class="feature-link"><span class="principle-icon"><i class="bx bx-dock-left"></i></span><h3>Simulador de tanque</h3><p>Monte seu tanque virtual e veja a compatibilidade em tempo real.</p></a>
-        <a href="conteudo.html" class="feature-link"><span class="principle-icon"><i class="bx bx-leaf"></i></span><h3>Plantas e invertebrados</h3><p>Guia completo de plantas aquáticas, camarões e caracóis.</p></a>
-        <a href="ferramentas.html#comunidades" class="feature-link"><span class="principle-icon"><i class="bx bx-group"></i></span><h3>Montador de comunidades</h3><p>Sugestões prontas para diferentes tamanhos de aquário.</p></a>
-      </div>
+      <div id="compareResult" class="compare-result"></div>
     </section>
   </main>
 

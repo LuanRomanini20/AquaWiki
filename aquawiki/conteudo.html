@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AquaWiki — Guia de aquarismo</title>
+  <meta name="description" content="AquaWiki: peixes ornamentais, filtragem, ciclagem, parâmetros e dicas práticas para aquários mais saudáveis." />
+  <meta name="theme-color" content="#061822" />
+  <meta name="color-scheme" content="dark light" />
+  <meta property="og:title" content="AquaWiki — Enciclopédia de Aquarismo" />
+  <meta property="og:description" content="Catálogo de peixes, simulador de compatibilidade, filtragem, guias e dicas práticas para aquarismo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aquawiki.com.br" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Aquarium_plants_and_fish.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AquaWiki — Enciclopédia de Aquarismo" />
+  <meta name="twitter:description" content="Catálogo de peixes, simulador de compatibilidade, filtragem, guias e dicas práticas para aquarismo." />
+  <meta name="twitter:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Aquarium_plants_and_fish.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AquaWiki","description":"Enciclopédia de aquarismo com catálogo de peixes, simulador de compatibilidade e guias práticos.","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://aquawiki.com.br"}</script>
+  <link rel="preconnect" href="https://en.wikipedia.org" />
+  <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+  <link rel="dns-prefetch" href="https://commons.wikimedia.org" />
+  <link rel="canonical" href="https://aquawiki.com.br" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+  <link rel="icon" type="image/png" href="assets/logo-dark.png" />
+  <link rel="apple-touch-icon" href="assets/logo-dark.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="site-bg" aria-hidden="true"></div>
+<header class="topbar" id="topo">
+    <a class="brand" href="index.html" aria-label="Voltar ao topo">
+      <span class="brand-logo" aria-hidden="true">
+        <img class="logo logo-dark" src="assets/logo-dark.png" alt="" width="172" height="64" />
+        <img class="logo logo-light" src="assets/logo-light.png" alt="" width="172" height="64" />
+      </span>
+      <span class="brand-copy"><small>enciclopédia de aquarismo</small></span>
+    </a>
+        <nav class="nav" aria-label="Navegação principal">
+      <a href="index.html"><i class="bx bx-home"></i> Início</a>
+      <a href="peixes.html"><i class="bx bx-fish"></i> Peixes</a>
+      <a href="ferramentas.html"><i class="bx bx-dock-left"></i> Ferramentas</a>
+      <a href="conteudo.html" class="active"><i class="bx bx-book-open"></i> Conteúdo</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar entre tema claro e escuro" aria-pressed="false"><i class="bx bx-moon" id="themeIcon"></i></button>
+  </header>
+
+  <main id="conteudo">
+    <section class="section-pad" id="guias" aria-labelledby="guias-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">Guias práticos</p>
+        <h2 id="guias-title">Dicas essenciais de aquarismo</h2>
+      </div>
+      <div class="guide-tabs reveal" role="tablist" aria-label="Guias de aquarismo">
+        <button class="tab active" data-guide="iniciante" type="button" role="tab" aria-selected="true" aria-controls="guidePanel"><i class="bx bx-seedling"></i> Iniciante</button>
+        <button class="tab" data-guide="plantado" type="button" role="tab" aria-selected="false" aria-controls="guidePanel"><i class="bx bx-leaf"></i> Plantado</button>
+        <button class="tab" data-guide="marinho" type="button" role="tab" aria-selected="false" aria-controls="guidePanel"><i class="bx bx-water"></i> Marinho</button>
+        <button class="tab" data-guide="doencas" type="button" role="tab" aria-selected="false" aria-controls="guidePanel"><i class="bx bx-error"></i> Doenças</button>
+        <button class="tab" data-guide="manutencao" type="button" role="tab" aria-selected="false" aria-controls="guidePanel"><i class="bx bx-cog"></i> Manutenção</button>
+      </div>
+      <div class="guide-panel reveal" id="guidePanel" role="tabpanel" tabindex="0"></div>
+    </section>
+
+    <section class="section-pad glossary-section reveal" id="glossario" aria-labelledby="glossario-title">
+      <div class="section-head compact">
+        <p class="eyebrow">Glossário</p>
+        <h2 id="glossario-title">Termos que todo aquarista encontra</h2>
+      </div>
+      <div class="glossary" id="glossary"></div>
+    </section>
+
+    <section class="section-pad" id="invertebrados" aria-labelledby="invert-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">Limpeza e vida extra</p>
+        <h2 id="invert-title">Invertebrados para aquário</h2>
+        <p>Camarões, caracóis e outros invertebrados ajudam no controle de algas, limpeza de detritos e tornam o ecossistema mais completo.</p>
+      </div>
+      <div class="toolbar reveal" role="search">
+        <label class="search-box">
+          <span><i class="bx bx-search"></i> Buscar</span>
+          <input id="invertSearch" type="search" placeholder="Ex.: camarão, caracol, limpeza..." autocomplete="off" />
+        </label>
+        <label>
+          <span><i class="bx bx-category"></i> Categoria</span>
+          <select id="invertCategory"><option value="all">Todas</option><option value="Camarão">Camarões</option><option value="Caracol">Caracóis</option></select>
+        </label>
+        <label>
+          <span><i class="bx bx-bar-chart-alt-2"></i> Dificuldade</span>
+          <select id="invertDifficulty"><option value="all">Todas</option></select>
+        </label>
+      </div>
+      <div class="result-row reveal">
+        <span id="invertResultCount" aria-live="polite">0</span> invertebrados encontrados
+        <button class="btn mini" id="resetInvertFilters" type="button">Limpar filtros</button>
+      </div>
+      <div class="fish-grid" id="invertGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="section-pad" id="plantas" aria-labelledby="plantas-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">Planted tank</p>
+        <h2 id="plantas-title">Plantas aquáticas por posição</h2>
+        <p>Plantas equilibram o ecossistema: absorvem nitratos, produzem oxigênio e oferecem abrigo. Escolha pela posição no aquário e nível de cuidado.</p>
+      </div>
+      <div class="toolbar reveal" role="search">
+        <label class="search-box">
+          <span><i class="bx bx-search"></i> Buscar</span>
+          <input id="plantSearch" type="search" placeholder="Ex.: anubias, musgo, foreground..." autocomplete="off" />
+        </label>
+        <label>
+          <span><i class="bx bx-category"></i> Posição</span>
+          <select id="plantCategory"><option value="all">Todas</option><option value="Foreground">Foreground</option><option value="Midground">Midground</option><option value="Background">Background</option><option value="Flutuante">Flutuantes</option><option value="Musgo">Musgos</option></select>
+        </label>
+        <label>
+          <span><i class="bx bx-bar-chart-alt-2"></i> Dificuldade</span>
+          <select id="plantDifficulty"><option value="all">Todas</option></select>
+        </label>
+        <label>
+          <span><i class="bx bx-sun"></i> Luz</span>
+          <select id="plantLight"><option value="all">Todas</option><option value="Baixa">Baixa</option><option value="Média">Média</option><option value="Alta">Alta</option></select>
+        </label>
+      </div>
+      <div class="result-row reveal">
+        <span id="plantResultCount" aria-live="polite">0</span> plantas encontradas
+        <button class="btn mini" id="resetPlantFilters" type="button">Limpar filtros</button>
+      </div>
+      <div class="fish-grid" id="plantGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="section-pad sources reveal" id="fontes" aria-labelledby="fontes-title">
+      <div class="section-head compact">
+        <p class="eyebrow">Transparência</p>
+        <h2 id="fontes-title">Fontes usadas para estruturar o conteúdo</h2>
+        <p>O AquaWiki não substitui veterinário, biólogo, loja especializada séria ou pesquisa por espécie. Use as fichas como ponto de partida.</p>
+      </div>
+      <ul>
+        <li><a href="https://www.fishbase.se/home.php" target="_blank" rel="noopener noreferrer">FishBase — base global de informações sobre peixes</a></li>
+        <li><a href="https://seriouslyfish.com/species" target="_blank" rel="noopener noreferrer">Seriously Fish — perfis de espécies e manutenção em cativeiro</a></li>
+        <li><a href="https://www.aqueon.com/articles/aquarium-filtration-basics" target="_blank" rel="noopener noreferrer">Aqueon — conceitos básicos de filtragem</a></li>
+        <li><a href="https://aquaforest.eu/en/knowledge-base/aquarium-filter-media-filtration-methods-biological-chemical-mechanical/" target="_blank" rel="noopener noreferrer">Aquaforest — mídias biológicas, químicas e mecânicas</a></li>
+        <li><a href="https://www.aquariumindustries.com.au/wp-content/uploads/2015/03/Freshwater-Fish-Compatibility-Chart.pdf" target="_blank" rel="noopener noreferrer">Aquarium Industries — tabela de compatibilidade de água doce</a></li>
+        <li><a href="https://www.mediawiki.org/wiki/Wikimedia_REST_API" target="_blank" rel="noopener noreferrer">Wikimedia REST API — imagens principais das páginas dos táxons</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Aquarium_plants_and_fish.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons — imagem do aquário plantado no destaque</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <dialog id="fishModal" class="fish-modal" aria-label="Ficha do peixe">
+    <button class="close-modal" id="closeModal" type="button" aria-label="Fechar"><i class="bx bx-x"></i></button>
+    <div id="modalContent"></div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p><i class="bx bx-droplet"></i> <strong>AquaWiki</strong></p>
+        <p>Enciclopédia de aquarismo com catálogo de peixes, simulador de compatibilidade, guias de filtragem e dicas práticas para aquários mais saudáveis.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <a href="peixes.html"><i class="bx bx-fish"></i> Catálogo de peixes</a>
+        <a href="ferramentas.html"><i class="bx bx-dock-left"></i> Simulador de tanque</a>
+        <a href="ferramentas.html#filtragem"><i class="bx bx-filter"></i> Guia de filtragem</a>
+        <a href="conteudo.html#guias"><i class="bx bx-book-open"></i> Guias práticos</a>
+        <a href="ferramentas.html#calculadoras"><i class="bx bx-calculator"></i> Calculadoras</a>
+      </div>
+      <div class="footer-links">
+        <h4>Recursos</h4>
+        <a href="conteudo.html#fontes"><i class="bx bx-link-external"></i> Fontes e referências</a>
+        <a href="conteudo.html#glossario"><i class="bx bx-book"></i> Glossário de termos</a>
+        <a href="https://www.fishbase.se/home.php" target="_blank" rel="noopener noreferrer"><i class="bx bx-globe"></i> FishBase</a>
+        <a href="https://seriouslyfish.com/species" target="_blank" rel="noopener noreferrer"><i class="bx bx-globe"></i> Seriously Fish</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>AquaWiki — promovendo aquarismo responsável desde 2025. Sempre consulte um especialista antes de introduzir novas espécies ao seu aquário.</p>
+      <a href="#topo"><i class="bx bx-up-arrow-alt"></i> Voltar ao topo</a>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo"><i class="bx bx-chevron-up"></i></button>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
