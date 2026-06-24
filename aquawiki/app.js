@@ -3083,11 +3083,14 @@ function openFish(index) {
   `;
   fishModal.setAttribute('aria-labelledby', 'fishModalTitle');
   fishModal.setAttribute('aria-describedby', 'fishModalDesc');
+  const scrollY = window.scrollY;
+  document.body.style.overflow = 'hidden';
   if (typeof fishModal.showModal === 'function') {
     fishModal.showModal();
   } else {
     fishModal.setAttribute('open', '');
   }
+  window.scrollTo(0, scrollY);
   hydrateVisiblePhotos();
 }
 
@@ -3365,8 +3368,11 @@ function openInvert(index) {
       </div>
     </div>
   `;
+  const scrollY = window.scrollY;
+  document.body.style.overflow = 'hidden';
   if (typeof fishModal.showModal === 'function') fishModal.showModal();
   else fishModal.setAttribute('open', '');
+  window.scrollTo(0, scrollY);
   $('#fishModalTitle')?.focus();
 }
 
@@ -3483,8 +3489,11 @@ function openPlant(index) {
       </div>
     </div>
   `;
+  const scrollY = window.scrollY;
+  document.body.style.overflow = 'hidden';
   if (typeof fishModal.showModal === 'function') fishModal.showModal();
   else fishModal.setAttribute('open', '');
+  window.scrollTo(0, scrollY);
   $('#fishModalTitle')?.focus();
 }
 
@@ -4016,12 +4025,14 @@ if (fishGrid) {
 $('#closeModal')?.addEventListener('click', () => {
   if (typeof fishModal.close === 'function') fishModal.close();
   else fishModal.removeAttribute('open');
+  document.body.style.overflow = '';
 });
 
 fishModal?.addEventListener('click', (event) => {
   if (event.target !== fishModal) return;
   if (typeof fishModal.close === 'function') fishModal.close();
   else fishModal.removeAttribute('open');
+  document.body.style.overflow = '';
 });
 
 document.addEventListener('change', (event) => {
