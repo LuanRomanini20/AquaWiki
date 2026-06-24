@@ -150,10 +150,13 @@
     </section>
   </main>
 
-  <dialog id="fishModal" class="fish-modal" aria-label="Ficha do peixe">
-    <button class="close-modal" id="closeModal" type="button" aria-label="Fechar"><i class="bx bx-x"></i></button>
-    <div id="modalContent"></div>
-  </dialog>
+  <div id="fishModal" class="fish-modal" role="dialog" aria-label="Ficha do peixe" aria-modal="true" hidden>
+    <div class="fish-modal-backdrop" id="modalBackdrop"></div>
+    <div class="fish-modal-content">
+      <button class="close-modal" id="closeModal" type="button" aria-label="Fechar"><i class="bx bx-x"></i></button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="footer-grid">

@@ -3083,14 +3083,10 @@ function openFish(index) {
   `;
   fishModal.setAttribute('aria-labelledby', 'fishModalTitle');
   fishModal.setAttribute('aria-describedby', 'fishModalDesc');
-  const scrollY = window.scrollY;
+  fishModal.removeAttribute('hidden');
+  fishModal.classList.add('is-open');
   document.body.style.overflow = 'hidden';
-  if (typeof fishModal.showModal === 'function') {
-    fishModal.showModal();
-  } else {
-    fishModal.setAttribute('open', '');
-  }
-  window.scrollTo(0, scrollY);
+  $('#fishModalTitle')?.focus();
   hydrateVisiblePhotos();
 }
 
@@ -3368,11 +3364,9 @@ function openInvert(index) {
       </div>
     </div>
   `;
-  const scrollY = window.scrollY;
+  fishModal.removeAttribute('hidden');
+  fishModal.classList.add('is-open');
   document.body.style.overflow = 'hidden';
-  if (typeof fishModal.showModal === 'function') fishModal.showModal();
-  else fishModal.setAttribute('open', '');
-  window.scrollTo(0, scrollY);
   $('#fishModalTitle')?.focus();
 }
 
@@ -3489,11 +3483,9 @@ function openPlant(index) {
       </div>
     </div>
   `;
-  const scrollY = window.scrollY;
+  fishModal.removeAttribute('hidden');
+  fishModal.classList.add('is-open');
   document.body.style.overflow = 'hidden';
-  if (typeof fishModal.showModal === 'function') fishModal.showModal();
-  else fishModal.setAttribute('open', '');
-  window.scrollTo(0, scrollY);
   $('#fishModalTitle')?.focus();
 }
 
@@ -4023,16 +4015,23 @@ if (fishGrid) {
 }
 
 $('#closeModal')?.addEventListener('click', () => {
-  if (typeof fishModal.close === 'function') fishModal.close();
-  else fishModal.removeAttribute('open');
+  fishModal.classList.remove('is-open');
+  fishModal.setAttribute('hidden', '');
   document.body.style.overflow = '';
 });
 
-fishModal?.addEventListener('click', (event) => {
-  if (event.target !== fishModal) return;
-  if (typeof fishModal.close === 'function') fishModal.close();
-  else fishModal.removeAttribute('open');
+$('#modalBackdrop')?.addEventListener('click', () => {
+  fishModal.classList.remove('is-open');
+  fishModal.setAttribute('hidden', '');
   document.body.style.overflow = '';
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && fishModal?.classList.contains('is-open')) {
+    fishModal.classList.remove('is-open');
+    fishModal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
 });
 
 document.addEventListener('change', (event) => {
