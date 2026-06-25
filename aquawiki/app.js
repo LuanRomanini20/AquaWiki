@@ -2701,7 +2701,33 @@ const checklistItems = [
   "Quarentena ou observação de novos animais planejada"
 ];
 
-/* ── Utilitários ── */
+/* ═══════════════════════════════════════════════════════════════
+   AQUAWIKI — Enciclopédia de Aquarismo
+   Modularização: Dados → Utilitários → Fotos → Filtros → Modal
+   → Tanque → Ferramentas → UI → Inicialização
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ══════ CONSTANTES ══════ */
+const C = Object.freeze({
+  DEBOUNCE_MS: 120,
+  TOAST_DURATION: 2500,
+  PHOTO_MAX_CONCURRENT: 3,
+  PHOTO_TIMEOUT_MS: 8000,
+  PHOTO_CACHE_LIMIT: 90,
+  REVEAL_THRESHOLD: 0.08,
+  PHOTO_ROOT_MARGIN: '260px 0px',
+  NAV_SECTIONS: ['peixes', 'tanque', 'comunidades', 'filtragem', 'guias', 'invertebrados', 'plantas', 'calculadoras', 'fontes'],
+});
+
+/* ══════ ERROR HANDLING ══════ */
+window.addEventListener('error', (e) => {
+  console.error('[AquaWiki]', e.message, e.filename, e.lineno);
+});
+window.addEventListener('unhandledrejection', (e) => {
+  console.error('[AquaWiki] Promise rejeitada:', e.reason);
+});
+
+/* ══════ UTILITÁRIOS ══════ */
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
@@ -2724,12 +2750,46 @@ function uniq(values) {
   return [...new Set(values)].sort((a, b) => a.localeCompare(b, 'pt-BR'));
 }
 
-function debounce(fn, delay = 140) {
+function debounce(fn, delay = C.DEBOUNCE_MS) {
   let timer;
   return (...args) => {
     window.clearTimeout(timer);
     timer = window.setTimeout(() => fn(...args), delay);
   };
+}
+
+/* ══════ COMPARTILHAMENTO ══════ */
+function shareItem(title, text, url) {
+  if (navigator.share) {
+    navigator.share({ title, text, url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast('Link copiado para a área de transferência', 'success');
+    }).catch(() => {
+      showToast('Não foi possível copiar o link', 'warn');
+    });
+  }
+}
+
+function shareFish(fish) {
+  const url = `${location.origin}${location.pathname}#peixes/${encodeURIComponent(fish.name)}`;
+  shareItem(fish.common, `${fish.common} — ${fish.temp} | pH ${fish.ph} | ${fish.size}`, url);
+}
+
+function sharePlant(plant) {
+  const url = `${location.origin}${location.pathname}#plantas/${encodeURIComponent(plant.name)}`;
+  shareItem(plant.common, `${plant.common} — Luz: ${plant.light} | CO2: ${plant.co2}`, url);
+}
+
+function shareInvert(invert) {
+  const url = `${location.origin}${location.pathname}#invertebrados/${encodeURIComponent(invert.name)}`;
+  shareItem(invert.common, `${invert.common} — ${invert.temp} | ${invert.size}`, url);
+}
+
+function shareTank() {
+  const names = tankState.fishes.map(f => encodeURIComponent(f.common.split('/')[0].trim())).join(',');
+  const url = `${location.origin}${location.pathname}#tanque=${names}`;
+  shareItem('Meu tanque AquaWiki', `Confira minha composição: ${tankState.fishes.map(f => f.common.split('/')[0].trim()).join(', ')}`, url);
 }
 
 function parseTemp(tempText) {
@@ -2793,14 +2853,12 @@ function fillSelect(select, values) {
 
 /* ── Cache de fotos Wikipedia ── */
 const PHOTO_CACHE_KEY = 'aquawiki-wikimedia-photo-cache-v3';
-const PHOTO_CACHE_LIMIT = 90;
-const PHOTO_REQUEST_TIMEOUT_MS = 8000;
 let photoCache = {};
 try { photoCache = JSON.parse(safeStorage.get(PHOTO_CACHE_KEY) || '{}'); }
 catch (_) { photoCache = {}; }
 
 function savePhotoCache() {
-  const entries = Object.entries(photoCache).slice(-PHOTO_CACHE_LIMIT);
+  const entries = Object.entries(photoCache).slice(-C.PHOTO_CACHE_LIMIT);
   photoCache = Object.fromEntries(entries);
   safeStorage.set(PHOTO_CACHE_KEY, JSON.stringify(photoCache));
 }
@@ -2815,7 +2873,7 @@ function wikipediaSearchUrl(query) {
 
 async function fetchJson(url) {
   const controller = 'AbortController' in window ? new AbortController() : null;
-  const timeout = controller ? window.setTimeout(() => controller.abort(), PHOTO_REQUEST_TIMEOUT_MS) : null;
+  const timeout = controller ? window.setTimeout(() => controller.abort(), C.PHOTO_TIMEOUT_MS) : null;
   try {
     const response = await fetch(url, {
       headers: { 'Accept': 'application/json' },
@@ -2899,10 +2957,9 @@ async function hydratePhotoElement(img) {
 let photoObserver;
 const photoQueue = [];
 let photoActive = 0;
-const PHOTO_MAX_CONCURRENT = 3;
 
 function processPhotoQueue() {
-  while (photoActive < PHOTO_MAX_CONCURRENT && photoQueue.length) {
+  while (photoActive < C.PHOTO_MAX_CONCURRENT && photoQueue.length) {
     const img = photoQueue.shift();
     photoActive++;
     hydratePhotoElement(img).finally(() => {
@@ -2927,7 +2984,7 @@ function hydrateVisiblePhotos() {
           processPhotoQueue();
         }
       });
-    }, { rootMargin: '260px 0px' });
+    }, { rootMargin: C.PHOTO_ROOT_MARGIN });
   }
   images.forEach(img => {
     img.dataset.observed = 'true';
@@ -3008,6 +3065,17 @@ function fishMatches(fish) {
   return byText && byWater && byDiff && byTemper && bySize && byFav;
 }
 
+function skeletonCards(count = 6) {
+  return Array(count).fill('').map(() => `
+    <div class="skeleton">
+      <div class="skeleton-photo"></div>
+      <div class="skeleton-line medium"></div>
+      <div class="skeleton-line short"></div>
+      <div class="skeleton-line"></div>
+    </div>
+  `).join('');
+}
+
 function renderFish() {
   if (!fishGrid) return;
   const matches = fishData.filter(fishMatches);
@@ -3079,6 +3147,7 @@ function openFish(index) {
         <div><b>Ambiente</b>${escapeHtml(fish.water)}</div>
       </div>
       <div class="warn-box"><strong>Atenção:</strong> ${escapeHtml(fish.care)}</div>
+      <div class="modal-actions"><button class="btn mini" onclick="shareFish(fishData[${index}])" type="button"><i class="bx bx-share-alt"></i> Compartilhar</button></div>
     </div>
   `;
   fishModal.setAttribute('aria-labelledby', 'fishModalTitle');
@@ -3361,6 +3430,7 @@ function openInvert(index) {
       <div class="modal-desc">
         <p>${escapeHtml(inv.summary)}</p>
         <div class="modal-warning"><i class="bx bx-error"></i> <b>Cuidados:</b> ${escapeHtml(inv.care)}</div>
+        <div class="modal-actions"><button class="btn mini" onclick="shareInvert(invertData[${index}])" type="button"><i class="bx bx-share-alt"></i> Compartilhar</button></div>
       </div>
     </div>
   `;
@@ -3384,7 +3454,7 @@ if (invertGrid) {
   });
 }
 
-const renderInvertDebounced = debounce(renderInverts, 120);
+const renderInvertDebounced = debounce(renderInverts);
 if (invertSearchInput) invertSearchInput.addEventListener('input', renderInvertDebounced);
 [invertCategoryFilter, invertDifficultyFilter].forEach(sel => {
   if (sel) sel.addEventListener('change', renderInverts);
@@ -3480,6 +3550,7 @@ function openPlant(index) {
       <div class="modal-desc">
         <p>${escapeHtml(p.summary)}</p>
         <div class="modal-warning"><i class="bx bx-error"></i> <b>Cuidados:</b> ${escapeHtml(p.care)}</div>
+        <div class="modal-actions"><button class="btn mini" onclick="sharePlant(plantData[${index}])" type="button"><i class="bx bx-share-alt"></i> Compartilhar</button></div>
       </div>
     </div>
   `;
@@ -3503,7 +3574,7 @@ if (plantGrid) {
   });
 }
 
-const renderPlantDebounced = debounce(renderPlants, 120);
+const renderPlantDebounced = debounce(renderPlants);
 if (plantSearchInput) plantSearchInput.addEventListener('input', renderPlantDebounced);
 [plantCategoryFilter, plantDifficultyFilter, plantLightFilter].forEach(sel => {
   if (sel) sel.addEventListener('change', renderPlants);
@@ -3579,7 +3650,7 @@ function setupReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08 });
+    }, { threshold: C.REVEAL_THRESHOLD });
   $$('.reveal').forEach(el => observer.observe(el));
 }
 
@@ -3645,7 +3716,7 @@ function setupScrollProgress() {
 
 /* ── Active nav link on scroll ── */
 function setupActiveNav() {
-  const sections = ['peixes', 'tanque', 'comunidades', 'filtragem', 'guias', 'invertebrados', 'plantas', 'calculadoras', 'fontes'].map(id => document.getElementById(id)).filter(Boolean);
+  const sections = C.NAV_SECTIONS.map(id => document.getElementById(id)).filter(Boolean);
   const navLinks = $$('.nav a');
 
   if (!sections.length || !navLinks.length) return;
@@ -3699,7 +3770,7 @@ function setupBubbles() {
 }
 
 /* ── Toast ── */
-function showToast(message, type = 'info', duration = 2500) {
+function showToast(message, type = 'info', duration = C.TOAST_DURATION) {
   const container = $('#toastContainer');
   if (!container) return;
   const icons = { success: 'bx-check-circle', info: 'bx-info-circle', warn: 'bx-error' };
@@ -3707,7 +3778,7 @@ function showToast(message, type = 'info', duration = 2500) {
   toast.className = `toast toast-${type}`;
   toast.setAttribute('role', 'alert');
   toast.setAttribute('aria-live', 'assertive');
-  toast.innerHTML = `<i class="bx ${icons[type] || icons.info}"></i><span>${escapeHtml(message)}</span>`;
+  toast.innerHTML = `<i class="bx ${icons[type] || icons.info}"></i><span>${escapeHtml(message)}</span><div class="toast-progress" style="animation-duration:${duration}ms"></div>`;
   container.appendChild(toast);
   setTimeout(() => {
     toast.classList.add('toast-out');
@@ -4046,7 +4117,7 @@ if (invertDifficultyFilter) fillSelect(invertDifficultyFilter, uniq(invertData.m
 if (plantDifficultyFilter) fillSelect(plantDifficultyFilter, uniq(plantData.map(p => p.difficulty)));
 
 if (searchInput) {
-  const renderFishDebounced = debounce(renderFish, 120);
+  const renderFishDebounced = debounce(renderFish);
   searchInput.addEventListener('input', renderFishDebounced);
   searchInput.addEventListener('change', renderFish);
 }

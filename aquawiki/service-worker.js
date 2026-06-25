@@ -1,7 +1,11 @@
-const CACHE_NAME = 'aquawiki-v3';
+const CACHE_NAME = 'aquawiki-v4';
+const PHOTO_CACHE = 'aquawiki-photos-v2';
 const STATIC_ASSETS = [
   './',
   './index.html',
+  './peixes.html',
+  './ferramentas.html',
+  './conteudo.html',
   './styles.css',
   './app.js',
   './manifest.json',
@@ -13,6 +17,7 @@ const STATIC_ASSETS = [
   './vendor/boxicons.ttf'
 ];
 
+/* ── Install: cache assets and skip waiting ── */
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -21,22 +26,28 @@ self.addEventListener('install', (event) => {
   );
 });
 
+/* ── Activate: clean old caches ── */
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(
-        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+        keys
+          .filter((key) => key !== CACHE_NAME && key !== PHOTO_CACHE)
+          .map((key) => caches.delete(key))
       )
     ).then(() => self.clients.claim())
   );
 });
 
+/* ── Fetch: network-first for HTML, cache-first for assets ── */
 self.addEventListener('fetch', (event) => {
   const { request } = event;
+  const url = new URL(request.url);
 
-  if (request.url.includes('en.wikipedia.org') || request.url.includes('upload.wikimedia.org')) {
+  /* Wikimedia photos: stale-while-revalidate */
+  if (url.hostname.includes('wikipedia.org') || url.hostname.includes('wikimedia.org')) {
     event.respondWith(
-      caches.open('aquawiki-photos-v1').then((cache) =>
+      caches.open(PHOTO_CACHE).then((cache) =>
         cache.match(request).then((cached) => {
           const fetched = fetch(request).then((response) => {
             if (response.ok) cache.put(request, response.clone());
@@ -49,6 +60,21 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  /* HTML pages: network-first with cache fallback */
+  if (request.destination === 'document' || url.pathname.endsWith('.html') || url.pathname === '/') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  /* Static assets: cache-first with network fallback */
   event.respondWith(
     caches.match(request).then((cached) => cached || fetch(request))
   );
